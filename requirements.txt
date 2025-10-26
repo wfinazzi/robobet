@@ -1,0 +1,7 @@
+streamlit==1.25.0
+pandas==2.1.1
+python-dotenv==1.0.1
+python-telegram-bot==20.6
+requests==2.32.0
+openpyxl==3.1.2
+watchdog==3.0.0
