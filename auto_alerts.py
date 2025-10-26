@@ -9,7 +9,7 @@ from src.telegram_alerts import enviar_alertas
 
 # --- Config ---
 TIMEZONE = 'America/Sao_Paulo'
-LOAD_INTERVAL = 60 
+LOAD_INTERVAL = 600 
 load_dotenv()
 token = os.getenv("TELEGRAM_TOKEN")
 usuarios = [int(x) for x in os.getenv("TELEGRAM_USERS").split(",")]
