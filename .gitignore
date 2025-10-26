@@ -1,0 +1,16 @@
+# Ignorar arquivos de ambiente
+.env
+
+# Ignorar pastas de cache e ambientes virtuais
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
+
+# Ignorar arquivos de dados gerados
+data/
+*.xlsx
+
+# Logs
+*.log
