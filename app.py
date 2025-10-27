@@ -1,15 +1,16 @@
-# app.py
+# app.py (Raspagem Direta)
 import streamlit as st
 import pandas as pd
 import os
-import time # Adicionado para garantir a definição
+import time 
 import pytz
-from datetime import timedelta, datetime, date, time as dt_time # Adicionado dt_time
+from datetime import timedelta, datetime, date, time as dt_time 
 from dotenv import load_dotenv
 
-# Funções auxiliares (apenas a função de raspagem é importada)
+# Dependência do scraper (Deve estar disponível no src/)
 from src.scraper_soccerstats import get_today_games 
-from src.telegram_alerts import enviar_alertas, enviar_mensagem # Importado para o botão de teste
+# 🚨 CORREÇÃO NO IMPORT: Usar a função de envio único
+from src.telegram_alerts import enviar_alertes_unicos, enviar_mensagem 
 
 # --- Configurações ---
 TIMEZONE_TARGET = 'America/Sao_Paulo'
@@ -26,95 +27,108 @@ DATA_DE_HOJE = datetime.now(tz_target).date()
 st.set_page_config(layout="wide")
 st.title("📊 Robô de Apostas - SoccerStats")
 
-# Inicializa df_filtrado como DataFrame vazio (necessário para o escopo)
-df_filtrado = pd.DataFrame() 
-
-# --- 1. Carregar ou Atualizar Dados (Lógica de data) ---
-ARQUIVO_EXISTE = os.path.exists(EXCEL_PATH)
-PODE_RASPAR = True
-MENSAGEM_RASPAGEM = "🔄 Atualizar jogos de hoje (Raspar dados)"
-
-if ARQUIVO_EXISTE:
-    data_modificacao_timestamp = os.path.getmtime(EXCEL_PATH)
-    data_modificacao = datetime.fromtimestamp(data_modificacao_timestamp).date()
+# --- FUNÇÕES DE PROCESSAMENTO DE DADOS (Mantidas) ---
+def limpar_e_converter_dados(df):
+    """Limpa '%' das colunas de porcentagem e converte para float."""
+    perc_cols = [col for col in df.columns if col.startswith(('Over', 'BTTS')) and ('H' in col or 'A' in col)]
     
-    if data_modificacao == DATA_DE_HOJE:
-        PODE_RASPAR = False
-        MENSAGEM_RASPAGEM = f"✅ Raspagem de hoje ({data_modificacao.strftime('%d/%m')}) já foi realizada."
-
-# O botão de raspagem é desabilitado se já foi feito hoje (mas o código de raspagem não deve rodar aqui, o main.py é que faz isso)
-if st.button(MENSAGEM_RASPAGEM, disabled=not PODE_RASPAR): 
-    # Esta ação é apenas um PLACEHOLDER para o Streamlit, o MAIN.PY que deve fazer a raspagem
-    if PODE_RASPAR:
-        st.warning("A raspagem é feita pelo script de backend (main.py). Lendo dados antigos e marcando a raspagem como necessária.")
-        # Se você quer forçar a raspagem por aqui, descomente e use o código do main.py
-        # st.info("Raspando dados, por favor aguarde...")
-        # try:
-        #     df = get_today_games()
-        #     # ... salvar df ...
-        #     st.success("Dados atualizados com sucesso!")
-        # except Exception as e:
-        #     st.error(f"Erro ao raspar ou salvar os dados. Erro: {e}")
-        #     df = pd.DataFrame() 
-    
-    # Após o clique, o Streamlit executa o resto do script e carrega o arquivo.
-
-try:
-    if ARQUIVO_EXISTE:
-         df = pd.read_excel(EXCEL_PATH)
-         if not PODE_RASPAR:
-             st.info(f"Dados carregados do arquivo salvo hoje.")
-    else:
-         st.warning(f"Arquivo '{EXCEL_PATH}' não encontrado. Execute o 'main.py' para raspar os dados.")
-         df = pd.DataFrame()
-         
-except FileNotFoundError:
-    st.warning(f"Arquivo '{EXCEL_PATH}' não encontrado. Execute o 'main.py' para raspar os dados.")
-    df = pd.DataFrame()
-except Exception as e:
-    st.error(f"Erro ao carregar o arquivo Excel: {e}")
-    df = pd.DataFrame()
-
-# --- 2. Processamento e Filtros ---
-
-if not df.empty:
-    st.subheader("Filtros de Apostas e Análise")
-    
-    # -----------------------------------------------------------
-    # REPETIÇÃO DO CÁLCULO DE MÉDIAS (ESSENCIAL)
-    # -----------------------------------------------------------
-    # Lista de TODAS as colunas de porcentagem
-    perc_cols = ['Over15_H', 'Over25_H', 'BTTS_H', 'Over15_A', 'Over25_A', 'BTTS_A']
-    num_cols = ['PPG_Casa', 'PPG_A', 'Partidas'] 
-
-    # Aplicar a limpeza de '%' e conversão para FLOAT (caso o Excel não tenha sido salvo limpo)
     for col in perc_cols:
         if col in df.columns:
-            df[col] = pd.to_numeric(df[col].astype(str).str.replace('%', '', regex=False), errors='coerce')
-    for col in num_cols:
-         if col in df.columns:
+            df[col] = df[col].astype(str).str.replace('%', '', regex=False)
             df[col] = pd.to_numeric(df[col], errors='coerce')
-    df.dropna(subset=[col for col in perc_cols + num_cols if col in df.columns], inplace=True)
-    
-    # Cálculo das médias (Repetido do main.py para garantir que Streamlit tenha as colunas de cálculo)
+            
+    df.dropna(subset=perc_cols, inplace=True)
+    return df
+
+def calcular_probabilidades(df):
+    """Adiciona colunas com probabilidade de Over 1.5, Over 2.5 e ambas"""
+    # 1. Cálculos de Médias Simples
+    if 'Over15_H' in df.columns and 'Over15_A' in df.columns:
+        df['Prob_Over1.5'] = ((df['Over15_H'] + df['Over15_A']) / 2).round(2)
+        df['Over15_MEDIA'] = df['Prob_Over1.5'] # Manter o nome de coluna para compatibilidade
+    if 'Over25_H' in df.columns and 'Over25_A' in df.columns:
+        df['Prob_Over2.5'] = ((df['Over25_H'] + df['Over25_A']) / 2).round(2)
+        df['Over25_MEDIA'] = df['Prob_Over2.5']
+    if 'BTTS_H' in df.columns and 'BTTS_A' in df.columns:
+        df['Prob_BTTS'] = ((df['BTTS_H'] + df['BTTS_A']) / 2).round(2)
+        df['Over_BOTH'] = df['Prob_BTTS']
+
+    # 2. Cálculo da MÉDIA_PROB
+    perc_cols = ['Over15_H', 'Over25_H', 'BTTS_H', 'Over15_A', 'Over25_A', 'BTTS_A']
     colunas_para_media = [col for col in perc_cols if col in df.columns and pd.api.types.is_numeric_dtype(df[col])]
+    
     if len(colunas_para_media) == 6:
         df['MÉDIA_PROB'] = df[colunas_para_media].sum(axis=1) / 6
         df['MÉDIA_PROB'] = df['MÉDIA_PROB'].round(2)
     else:
-        df['MÉDIA_PROB'] = 0
-
-    # Adiciona colunas de probabilidade para filtros
-    if 'Over15_H' in df.columns and 'Over15_A' in df.columns:
-        df['Prob_Over1.5'] = ((df['Over15_H'] + df['Over15_A']) / 2).round(2)
-    if 'Over25_H' in df.columns and 'Over25_A' in df.columns:
-        df['Prob_Over2.5'] = ((df['Over25_H'] + df['Over25_A']) / 2).round(2)
-    if 'BTTS_H' in df.columns and 'BTTS_A' in df.columns:
-        df['Prob_BTTS'] = ((df['BTTS_H'] + df['BTTS_A']) / 2).round(2)
-    # -----------------------------------------------------------
+        df['MÉDIA_PROB'] = 0 
+        
+    return df
+# --- FIM DAS FUNÇÕES DE PROCESSAMENTO ---
 
 
-    # --- 2.3 Filtros interativos (permanecem os mesmos) ---
+# --- FUNÇÃO PRINCIPAL DE CARREGAMENTO DE DADOS COM CACHE (Mantida) ---
+@st.cache_data(ttl=3600, show_spinner="🔄 Raspando dados atualizados. Aguarde, isso pode levar 10-20 segundos...")
+def load_and_process_data():
+    
+    # 1. Tenta carregar do arquivo se for de hoje (rápido)
+    if os.path.exists(EXCEL_PATH):
+        data_modificacao_timestamp = os.path.getmtime(EXCEL_PATH)
+        data_modificacao = datetime.fromtimestamp(data_modificacao_timestamp).date()
+        
+        if data_modificacao == DATA_DE_HOJE:
+            df = pd.read_excel(EXCEL_PATH)
+            # Verifica se o DF tem dados e se o cache está sendo usado
+            if not df.empty and 'MÉDIA_PROB' in df.columns:
+                st.info(f"Dados carregados do Excel salvo em {datetime.fromtimestamp(data_modificacao_timestamp).strftime('%H:%M:%S')} (Cache ativo).")
+                return df
+
+    # 2. Raspagem (Acontece se o cache não existir ou estiver expirado)
+    st.info("Iniciando raspagem no SoccerStats...")
+    df = get_today_games() 
+    
+    # 3. Processamento
+    df = limpar_e_converter_dados(df)
+    df = calcular_probabilidades(df)
+    
+    # 4. Salvar (para o bot de backend e para carregamentos rápidos futuros)
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    df.to_excel(EXCEL_PATH, index=False)
+    
+    return df
+# --- FIM DA FUNÇÃO DE CACHE ---
+
+
+# --- LÓGICA DE BOTÃO E CARREGAMENTO (Mantida) ---
+
+# Função para limpar o cache e forçar a nova execução
+def clear_cache_and_reload():
+    st.cache_data.clear()
+    
+# Botão que limpa o cache (força a função load_and_process_data a executar a raspagem)
+st.markdown("---")
+if st.button("🔄 RASPAR DADOS AGORA (Pode levar 10-20 segundos)", on_click=clear_cache_and_reload):
+    st.rerun() 
+
+# Chama a função de carregamento. O cache do Streamlit cuida da raspagem lenta.
+try:
+    df = load_and_process_data()
+except Exception as e:
+    st.error(f"Erro ao carregar ou raspar os dados: {e}")
+    df = pd.DataFrame()
+
+
+# --- RESTO DO CÓDIGO (FILTROS E TABELAS - MANTIDO) ---
+
+# Inicializa df_filtrado como DataFrame vazio (necessário para o escopo)
+df_filtrado = pd.DataFrame() 
+
+
+if not df.empty:
+    st.subheader("Filtros de Apostas e Análise")
+    
+    # --- FILTROS INTERATIVOS ---
     tipo_aposta = st.selectbox("Tipo de aposta", [
         "Todos",
         "Alta Prob. Aberto (Top)", 
@@ -130,21 +144,21 @@ if not df.empty:
     if tipo_aposta.startswith("Over") or tipo_aposta.startswith("Alta Prob."):
         perc_min = st.slider("Porcentagem mínima", 0, 100, 60)
     
-    # --- 2.4 Aplicar filtros dinamicamente ---
+    # --- Aplicar filtros dinamicamente ---
     df_filtrado = df.copy()
     
-    df_filtrado = df_filtrado[df_filtrado['Partidas'] >= min_jogos] 
+    df_filtrado = df_filtrado[df_filtrado.get('Partidas', 0) >= min_jogos] 
 
     if tipo_aposta == "Mandante Forte x Visitante Fraco":
         df_filtrado = df_filtrado[
-            (df_filtrado['PPG_Casa'] >= 1.5) & 
-            (df_filtrado['PPG_A'] < 1.0) 
+            (df_filtrado.get('PPG_Casa', 0) >= 1.5) & 
+            (df_filtrado.get('PPG_A', 0) < 1.0) 
         ]
         
     elif tipo_aposta == "Visitante Forte x Mandante Fraco":
         df_filtrado = df_filtrado[
-            (df_filtrado['PPG_A'] >= 1.5) & 
-            (df_filtrado['PPG_Casa'] < 1.0) 
+            (df_filtrado.get('PPG_A', 0) >= 1.5) & 
+            (df_filtrado.get('PPG_Casa', 0) < 1.0) 
         ]
         
     elif tipo_aposta == "Alta Prob. Aberto (Top)":
@@ -153,12 +167,12 @@ if not df.empty:
             df_filtrado = df_filtrado.sort_values(by='MÉDIA_PROB', ascending=False)
         
     elif tipo_aposta == "Over 1.5":
-        df_filtrado = df_filtrado[df_filtrado['Prob_Over1.5'] >= perc_min]
+        df_filtrado = df_filtrado[df_filtrado.get('Prob_Over1.5', 0) >= perc_min] 
         
     elif tipo_aposta == "Over 2.5":
-        df_filtrado = df_filtrado[df_filtrado['Prob_Over2.5'] >= perc_min] 
+        df_filtrado = df_filtrado[df_filtrado.get('Prob_Over2.5', 0) >= perc_min] 
         
-    # --- 3. Exibir resultados ---
+    # --- 4. Exibir resultados ---
     st.subheader(f"Jogos filtrados ({len(df_filtrado)} partidas encontradas)")
     
     if not df_filtrado.empty:
@@ -191,10 +205,15 @@ if not df.empty:
 
         # === ORDENAR POR HORÁRIO ===
         if 'Horário' in df_html.columns:
+            try:
+                df_html['Horário'] = df_html['Horário'].astype(str)
+            except:
+                pass 
             df_html = df_html.sort_values(by='Horário', ascending=True).reset_index(drop=True)
         
         GOOGLE_SEARCH_BASE_URL = "https://www.google.com/search?q="
 
+        # Funções para criar links
         def get_clean_name(name):
             return str(name).strip() if not pd.isna(name) else ""
 
@@ -211,22 +230,20 @@ if not df.empty:
             url = GOOGLE_SEARCH_BASE_URL + query_encoded
             return f'<a href="{url}" target="_blank">Ver Jogo</a>'
 
-        # 1. Cria a coluna 'Resultado'
+        # Cria colunas de HTML
         if 'Time 1' in df_html.columns and 'Time 2' in df_html.columns:
             df_html['Resultado'] = df_html.apply(
                 lambda row: criar_link_resultado_puro(get_clean_name(row['Time 1']), get_clean_name(row['Time 2'])), axis=1
             )
-
-        # 2. Converte as colunas de Times para HTML
         if 'Time 1' in df_html.columns: df_html['Time 1'] = df_html['Time 1'].apply(criar_link_google)
         if 'Time 2' in df_html.columns: df_html['Time 2'] = df_html['Time 2'].apply(criar_link_google)
             
-        # 3. Formatação de porcentagem para o HTML
+        # Formatação de porcentagem para o HTML
         for col in ['MÉDIA_PROB', 'Prob_Over1.5', 'Prob_Over2.5', 'Prob_BTTS']:
             if col in df_html.columns:
-                df_html[col] = df_html[col].apply(lambda x: f"{int(x)}%" if pd.notna(x) else 'N/A')
+                df_html[col] = df_html[col].apply(lambda x: f"{int(x)}%" if pd.notna(x) and x is not None else 'N/A')
             
-        # 4. Exibição da Tabela HTML
+        # Exibição da Tabela HTML
         cols_to_display_html = [
             'País', 'Horário', 'Time 1', 'Time 2', 'Resultado', 'MÉDIA_PROB', 'Prob_Over1.5', 'Prob_Over2.5', 'Prob_BTTS',
             'PPG_Casa', 'PPG_A', 'Over15_H', 'Over15_A', 'Over25_H', 'Over25_A', 'BTTS_H', 'BTTS_A', 'Partidas'
@@ -254,7 +271,7 @@ col1, col2 = st.columns(2)
 # BOTÃO 1: TESTE DE CONEXÃO TELEGRAM
 with col1:
     if primeiro_usuario:
-        if st.button("🚨 TESTAR CONEXÃO TELEGRAM (Alerta Rápido)"):
+        if st.button("🚨 TESTAR CONEXÃO TELEGRAM"):
             st.info(f"Tentando enviar mensagem de teste para o chat ID: {primeiro_usuario}...")
             
             mensagem_teste = (
@@ -270,9 +287,21 @@ with col1:
 
 # BOTÃO 2: ALERTA MANUAL DOS JOGOS FILTRADOS
 with col2:
+    # Obtém df_filtrado do escopo local, se existir
     if 'df_filtrado' in locals() and not df_filtrado.empty:
-        if st.button("🚀 Enviar alertas Telegram (Todos os Jogos Filtrados)"):
-            enviar_alertas(df_filtrado, token, usuarios)
-            st.success("Alertas dos jogos filtrados enviados!")
+        
+        if st.button("🚀 Enviar alertas Telegram (Filtrados)"):
+            
+            # 🚨 CORREÇÃO DE LÓGICA: Adicionar Tipo_Alerta e usar a nova função
+            df_enviar = df_filtrado.copy()
+            df_enviar['Tipo_Alerta'] = "ALERTA_MANUAL_APP" # Tipo para a formatação
+            
+            df_enviados = enviar_alertes_unicos(df_enviar, token, usuarios)
+            
+            if not df_enviados.empty:
+                st.success(f"✅ {len(df_enviados)} novos alertas enviados manualmente!")
+            else:
+                st.info("⏸️ Nenhum novo alerta enviado. Os jogos filtrados já foram alertados.")
+                
     else:
         st.info("Filtre alguns jogos para habilitar o envio manual.")
