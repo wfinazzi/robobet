@@ -9,6 +9,9 @@ def get_today_games():
 
     url_link1 = "https://www.soccerstats.com/matches.asp?matchday=1&listing=1"
     url_link2 = "https://www.soccerstats.com/matches.asp?matchday=1&listing=2"
+    
+	# url_link1 = "https://www.soccerstats.com/matches.asp?matchday=2&daym=tomorrow&listing=1"
+	# url_link2 = "https://www.soccerstats.com/matches.asp?matchday=2&daym=tomorrow&listing=2"
 
     r1 = requests.get(url_link1, headers=header)
     r2 = requests.get(url_link2, headers=header)
