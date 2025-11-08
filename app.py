@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from src.scraper_soccerstats import get_today_games 
 # 🚨 CORREÇÃO NO IMPORT: Usar a função de envio único
 from src.telegram_alerts import enviar_alertes_unicos, enviar_mensagem 
+from src.database import prepare_df_for_insertion, get_mysql_connection, insert_df_into_mysql, run_results_update_workflow
+from buscar_resultados import recreate_results_csv
 
 # --- Configurações ---
 TIMEZONE_TARGET = 'America/Sao_Paulo'
@@ -26,6 +28,10 @@ DATA_DE_HOJE = datetime.now(tz_target).date()
 
 st.set_page_config(layout="wide")
 st.title("📊 Robô de Apostas - SoccerStats")
+# Remoção de page_link que causava erro em algumas versões
+# A navegação multipáginas do Streamlit exibirá automaticamente as páginas do diretório "pages/"
+st.sidebar.title("Menu")
+# A navegação multipáginas do Streamlit exibirá automaticamente as páginas do diretório "pages/" no menu lateral.
 
 # --- FUNÇÕES DE PROCESSAMENTO DE DADOS (Mantidas) ---
 def limpar_e_converter_dados(df):
@@ -108,8 +114,17 @@ def clear_cache_and_reload():
     
 # Botão que limpa o cache (força a função load_and_process_data a executar a raspagem)
 st.markdown("---")
-if st.button("🔄 RASPAR DADOS AGORA (Pode levar 10-20 segundos)", on_click=clear_cache_and_reload):
-    st.rerun() 
+if st.button("🔄 RASPAR DADOS AGORA (Pode levar 10-20 segundos)"):
+    try:
+        # Remove o arquivo Excel antes de raspar novamente
+        if os.path.exists(EXCEL_PATH):
+            os.remove(EXCEL_PATH)
+            st.info(f"Arquivo '{EXCEL_PATH}' removido para recriação.")
+    except Exception as e:
+        st.warning(f"Não foi possível remover '{EXCEL_PATH}': {e}")
+    # Limpa cache e força nova raspagem que irá salvar o Excel novamente
+    clear_cache_and_reload()
+    st.rerun()
 
 # Chama a função de carregamento. O cache do Streamlit cuida da raspagem lenta.
 try:
@@ -180,42 +195,113 @@ if not df.empty:
         # ----------------------------------------------------------------------
         # PARTE 1: EXIBIR O DATAFRAME ORIGINAL (SEM LINKS)
         # ----------------------------------------------------------------------
+        # Tabela Original (Interativa, sem links clicáveis)
         st.markdown("### Tabela Original (Interativa, sem links clicáveis)")
         
         cols_display_simple = [
             'País', 'Horário', 'Time 1', 'Time 2', 'MÉDIA_PROB', 'Prob_Over1.5', 'Prob_Over2.5', 'Prob_BTTS',
             'PPG_Casa', 'PPG_A', 'Over15_H', 'Over15_A', 'Over25_H', 'Over25_A', 'BTTS_H', 'BTTS_A', 'Partidas'
         ]
-        
         final_cols_simple = [col for col in cols_display_simple if col in df_filtrado.columns]
         
+        df_simple = df_filtrado.copy()
+        formato_24h = '%H:%M'
+        formato_12h = '%I:%M %p'
+        
+        from datetime import datetime
+        
+        def parse_to_timestamp(s: str):
+            s = str(s).strip()
+            for fmt in (formato_24h, formato_12h):
+                try:
+                    t = datetime.strptime(s, fmt).time()
+                    return datetime(2000, 1, 1, t.hour, t.minute)  # timestamp neutro
+                except Exception:
+                    continue
+            return None
+        
+        # Compensação: subtrai 3 horas
+        OFFSET_HORAS = -3
+        
+        def minutes_from_ts(ts):
+            if ts is None:
+                return None
+            ajustado = ts + timedelta(hours=OFFSET_HORAS)
+            return int(ajustado.hour) * 60 + int(ajustado.minute)
+        
+        def format_24h_with_offset(ts, original: str):
+            if ts is None:
+                return str(original).strip() if original is not None else ""
+            ajustado = ts + timedelta(hours=OFFSET_HORAS)
+            h = int(ajustado.hour)
+            m = int(ajustado.minute)
+            return f"{h:02d}:{m:02d}"
+        
+        parsed_ts = df_simple['Horário'].apply(parse_to_timestamp)
+        df_simple['Horario_sort_min'] = parsed_ts.apply(minutes_from_ts)
+        df_simple['Horário'] = [format_24h_with_offset(ts, orig) for ts, orig in zip(parsed_ts, df_simple['Horário'])]
+        # Não sobrescrever 'Horário': manter o valor original do DF
+        # df_simple['Horário'] = [to_inverted_ampm_from_ts(ts, orig) for ts, orig in zip(parsed_ts, df_simple['Horário'])]  # removido
+        
+        # Ordena cronologicamente; inválidos vão para o fim
+        df_simple = df_simple.sort_values('Horario_sort_min', na_position='last')
+        
         st.dataframe(
-            df_filtrado[final_cols_simple].round(2), 
-            hide_index=True, 
+            df_simple[final_cols_simple].round(2),
+            hide_index=True,
             use_container_width=True,
         )
         
         # ----------------------------------------------------------------------
         # PARTE 2: EXIBIR A TABELA COM LINKS CLICÁVEIS (USANDO MARKDOWN/HTML)
         # ----------------------------------------------------------------------
+        # Tabela com Links Clicáveis (Ordenada por Horário)
         st.markdown("---")
         st.markdown("### Tabela com Links Clicáveis (Ordenada por Horário)")
 
         df_html = df_filtrado.copy()
 
-        # === ORDENAR POR HORÁRIO ===
-        if 'Horário' in df_html.columns:
-            try:
-                df_html['Horário'] = df_html['Horário'].astype(str)
-            except:
-                pass 
-            df_html = df_html.sort_values(by='Horário', ascending=True).reset_index(drop=True)
-        
+        formato_24h = '%H:%M'
+        formato_12h = '%I:%M %p'
+
+        from datetime import datetime
+
+        def parse_to_timestamp(s: str):
+            s = str(s).strip()
+            for fmt in (formato_24h, formato_12h):
+                try:
+                    t = datetime.strptime(s, fmt).time()
+                    return datetime(2000, 1, 1, t.hour, t.minute)
+                except Exception:
+                    continue
+            return None
+
+        OFFSET_HORAS = -3
+
+        def minutes_from_ts(ts):
+            if ts is None:
+                return None
+            ajustado = ts + timedelta(hours=OFFSET_HORAS)
+            return int(ajustado.hour) * 60 + int(ajustado.minute)
+
+        def format_24h_with_offset(ts, original: str):
+            if ts is None:
+                return str(original).strip() if original is not None else ""
+            ajustado = ts + timedelta(hours=OFFSET_HORAS)
+            h = int(ajustado.hour)
+            m = int(ajustado.minute)
+            return f"{h:02d}:{m:02d}"
+
+        parsed_ts = df_html['Horário'].apply(parse_to_timestamp)
+        df_html['Horario_sort_min'] = parsed_ts.apply(minutes_from_ts)
+        df_html['Horário'] = [format_24h_with_offset(ts, orig) for ts, orig in zip(parsed_ts, df_html['Horário'])]
+
+        df_html = df_html.sort_values('Horario_sort_min', na_position='last').reset_index(drop=True)
+
         GOOGLE_SEARCH_BASE_URL = "https://www.google.com/search?q="
 
-        # Funções para criar links
         def get_clean_name(name):
-            return str(name).strip() if not pd.isna(name) else ""
+            return str(name).strip().replace(" ", "+")
 
         def criar_link_google(nome_time):
             if pd.isna(nome_time) or nome_time == "": return nome_time
@@ -261,6 +347,67 @@ if not df.empty:
         )
 
 # -----------------------------------------------------------
+# BANCO DE DADOS (MySQL) - Integração via Streamlit
+# -----------------------------------------------------------
+st.markdown("---")
+st.subheader("Banco de Dados (MySQL)")
+
+mysql_host = st.text_input("Host MySQL", os.getenv("MYSQL_HOST", "localhost"))
+mysql_user = st.text_input("Usuário MySQL", os.getenv("MYSQL_USER", ""))
+mysql_password = st.text_input("Senha MySQL", os.getenv("MYSQL_PASSWORD", ""), type="password")
+mysql_db = st.text_input("Banco de Dados", os.getenv("MYSQL_DB", "simulador-apostas"))
+
+col_db1, col_db2, col_db3 = st.columns(3)
+
+with col_db1:
+    if st.button("🔌 Testar conexão MySQL"):
+        os.environ['MYSQL_HOST'] = mysql_host
+        os.environ['MYSQL_USER'] = mysql_user
+        os.environ['MYSQL_PASSWORD'] = mysql_password
+        os.environ['MYSQL_DB'] = mysql_db
+        try:
+            conn = get_mysql_connection()
+            conn.close()
+            st.success("Conexão MySQL bem-sucedida!")
+        except Exception as e:
+            st.error(f"Erro ao conectar no MySQL: {e}")
+
+with col_db2:
+    if st.button("📥 Inserir jogos filtrados no MySQL"):
+        if 'df_filtrado' in locals() and not df_filtrado.empty:
+            os.environ['MYSQL_HOST'] = mysql_host
+            os.environ['MYSQL_USER'] = mysql_user
+            os.environ['MYSQL_PASSWORD'] = mysql_password
+            os.environ['MYSQL_DB'] = mysql_db
+            try:
+                df_ready = prepare_df_for_insertion(df_filtrado)
+                conn = get_mysql_connection()
+                total = insert_df_into_mysql(df_ready, conn)
+                conn.close()
+                st.success(f"✅ {total} registros inseridos na tabela 'jogos' (filtrados).")
+            except Exception as e:
+                st.error(f"Erro ao inserir jogos filtrados: {e}")
+        else:
+            st.info("Filtre alguns jogos para habilitar a inserção no MySQL.")
+
+with col_db3:
+    if st.button("📥 Inserir todos os jogos de hoje no MySQL"):
+        if 'df' in locals() and not df.empty:
+            os.environ['MYSQL_HOST'] = mysql_host
+            os.environ['MYSQL_USER'] = mysql_user
+            os.environ['MYSQL_PASSWORD'] = mysql_password
+            os.environ['MYSQL_DB'] = mysql_db
+            try:
+                df_ready = prepare_df_for_insertion(df)
+                conn = get_mysql_connection()
+                total = insert_df_into_mysql(df_ready, conn)
+                conn.close()
+                st.success(f"✅ {total} registros inseridos na tabela 'jogos' (todos os jogos de hoje).")
+            except Exception as e:
+                st.error(f"Erro ao inserir todos os jogos: {e}")
+        else:
+            st.info("Nenhum dado carregado. Clique em 'RASPAR DADOS AGORA' para obter jogos de hoje.")
+# -----------------------------------------------------------
 # FERRAMENTAS DE TESTE E ALERTA MANUAL
 # -----------------------------------------------------------
 st.markdown("---")
@@ -305,3 +452,40 @@ with col2:
                 
     else:
         st.info("Filtre alguns jogos para habilitar o envio manual.")
+# Atualização de resultados via CSV
+st.markdown("---")
+st.subheader("Atualização de Resultados (CSV → MySQL)")
+csv_path = st.text_input("Arquivo CSV de resultados", "resultados_futebol_hoje.csv")
+
+# Controles de log para auditoria das updates
+log_enabled = st.checkbox("Gerar log de updates (SQL)", value=True)
+log_path = st.text_input("Arquivo de log", "logs/results_update.sql")
+fallback_like = st.checkbox("Usar fallback por LIKE com normalização/alias", value=True)
+
+col_csv1, col_csv2 = st.columns(2)
+with col_csv1:
+    if st.button("♻️ Recriar arquivo de resultados CSV"):
+        try:
+            total_csv = recreate_results_csv(csv_path)
+            st.success(f"✅ CSV recriado com {total_csv} jogos em '{csv_path}'.")
+        except Exception as e:
+            st.error(f"Erro ao recriar CSV: {e}")
+
+with col_csv2:
+    if st.button("🔄 Atualizar resultados do CSV no MySQL"):
+        os.environ['MYSQL_HOST'] = mysql_host
+        os.environ['MYSQL_USER'] = mysql_user
+        os.environ['MYSQL_PASSWORD'] = mysql_password
+        os.environ['MYSQL_DB'] = mysql_db
+        try:
+            total_proc = run_results_update_workflow(
+                csv_path,
+                log_file_path=log_path if log_enabled else None,
+                fallback_like=fallback_like
+            )
+            msg = f"✅ {total_proc} partidas atualizadas a partir de '{csv_path}'."
+            if log_enabled:
+                msg += f" Log salvo em '{log_path}'."
+            st.success(msg)
+        except Exception as e:
+            st.error(f"Erro ao atualizar resultados do CSV: {e}")

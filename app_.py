@@ -37,8 +37,34 @@ formato_correto = '%H:%M'
 
 jogos_today = jogos_today.sort_values('Horário')
 jogos_today = jogos_today.dropna()
-jogos_today['Horário'] = pd.to_datetime(jogos_today['Horário'], format=formato_correto) + pd.DateOffset(hours=8)
-jogos_today['Horário'] = pd.to_datetime(jogos_today['Horário'], format=formato_correto).dt.time
+
+# Converter HH:MM para auxiliar 24h e exibição AM/PM invertida, sem DateOffset
+from datetime import datetime
+
+# Parse robusto do horário 24h
+parsed = pd.to_datetime(jogos_today['Horário'].astype(str).str.strip(), format=formato_correto, errors='coerce')
+# Remover linhas com horário inválido
+jogos_today = jogos_today.loc[parsed.notna()].copy()
+
+# Auxiliar para ordenação cronológica (24h)
+jogos_today['Horario_24h'] = parsed.dt.strftime('%H:%M')
+jogos_today['Horario_sort_min'] = parsed.dt.hour * 60 + parsed.dt.minute
+
+# Função para converter para 12h e inverter AM/PM
+def to_inverted_ampm_from_parsed(ts: pd.Timestamp) -> str:
+    h = ts.hour
+    m = ts.minute
+    hour12 = (h % 12) or 12
+    suffix = "AM" if h < 12 else "PM"
+    suffix = "PM" if suffix == "AM" else "AM"
+    return f"{hour12:02d}:{m:02d} {suffix}"
+
+# Exibir o horário invertido (AM/PM)
+jogos_today['Horário'] = parsed.apply(to_inverted_ampm_from_parsed)
+
+# Ordenar pela chave numérica
+jogos_today = jogos_today.sort_values('Horario_sort_min').reset_index(drop=True)
+
 jogos_today['Vitorias_A'] = jogos_today['%Vitorias_A'].str.replace('%', '').astype("float")
 jogos_today['Vitorias_H'] = jogos_today['%Vitorias_H'].str.replace('%', '').astype("float")
 # jogos_today['BTTS_H'] = jogos_today['BTTS_H'].str.replace('%', '').astype("float"),

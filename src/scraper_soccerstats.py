@@ -1,5 +1,8 @@
 import pandas as pd
 import requests
+from datetime import datetime, date, time as dt_time
+import os
+import pytz
 
 def get_today_games():
     header = {
@@ -46,9 +49,15 @@ def get_today_games():
 
     # Tratamento de horários e porcentagens
     formato_correto = '%H:%M'
-    jogos_today = jogos_today.sort_values('Horário').dropna()
-    jogos_today['Horário'] = pd.to_datetime(jogos_today['Horário'], format=formato_correto) + pd.DateOffset(hours=8)
-    jogos_today['Horário'] = pd.to_datetime(jogos_today['Horário'], format=formato_correto).dt.time
+
+    # Ordena por horário bruto e remove nulos
+    jogos_today = jogos_today.sort_values('Horário').dropna(subset=['Horário'])
+
+    # Remover qualquer conversão/inversão AM/PM; manter horário original
+    # Normalizar apenas espaços
+    jogos_today['Horário'] = jogos_today['Horário'].astype(str).str.strip()
+
+    # Vitórias
     jogos_today['Vitorias_A'] = jogos_today['%Vitorias_A'].str.replace('%','').astype("float")
     jogos_today['Vitorias_H'] = jogos_today['%Vitorias_H'].str.replace('%','').astype("float")
     # jogos_today['BTTS_H'] = jogos_today['BTTS_H'].str.replace('%', '').astype("float")
@@ -61,5 +70,4 @@ def get_today_games():
 
     # Salvar Excel
     jogos_today.to_excel("data/Jogos_de_Hoje.xlsx", index=False)
-
     return jogos_today

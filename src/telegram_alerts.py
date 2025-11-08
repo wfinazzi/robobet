@@ -56,60 +56,95 @@ def enviar_mensagem(chat_id, mensagem, token):
 def formatar_mensagem_alerta(row):
     """
     Formata a mensagem do Telegram com as probabilidades detalhadas.
-    Esta é a parte que garante a riqueza das informações.
+    Aplica horário corrigido (se já enviado pelo main) e mostra HH:MM local.
     """
-    
+    import urllib.parse
+    import pandas as pd
+
     tipo = row.get('Tipo_Alerta', 'ALERTA_PADRÃO')
-    
-    # === HEADER ===
+
     if tipo == "HIGH_PROB":
         header = "🚀 <b>ALERTA PREMIUM (HIGH PROB)</b> 🚀"
     elif tipo == "ALERTA_30MIN":
         header = "🔔 <b>ALERTA DE JOGO PRÓXIMO (30 MIN)</b> 🔔"
+    elif tipo == "ALERTA_120MIN":
+        header = "🔔 <b>ALERTA PRÉ-JOGO (até 2h)</b> 🔔"
     else:
         header = "⚽ <b>NOVO ALERTA DE JOGO</b> ⚽"
-        
-    # === CORPO BÁSICO ===
-    mensagem = (
-        f"{header}\n"
-        f"<b>{row.get('Time 1', 'N/A')}</b> vs <b>{row.get('Time 2', 'N/A')}</b>\n"
-        f"País: {row.get('País', 'N/A')}\n"
-        f"Horário: {row.get('Horário', 'N/A')}\n\n"
-        f"🔥 <b>MÉDIA GERAL: {row.get('MÉDIA_PROB', 0):.0f}%</b>\n"
-        f"✅ <b>Partidas Analisadas: {row.get('Partidas', 'N/A'):.0f}</b>\n\n"
-    )
-    
-    # === DETALHES DAS PROBABILIDADES ===
-    
-    # Usando .get() e round(0) para as médias calculadas
-    over15_media = row.get('Over15_MEDIA', 0)
-    over25_media = row.get('Over25_MEDIA', 0)
+
+    time1 = str(row.get('Time 1', 'N/A'))
+    time2 = str(row.get('Time 2', 'N/A'))
+    pais = row.get('País', 'N/A')
+    # Usa o horário já corrigido pelo main.py, se presente
+    horario = row.get('Horário', 'N/A')
+    liga = row.get('LIGA', None)
+    partidas = row.get('Partidas', 'N/A')
+    media_prob = row.get('MÉDIA_PROB', 0)
+
+    query = urllib.parse.quote(f"{time1} vs {time2}")
+    link_google = f'<a href="https://www.google.com/search?q={query}" target="_blank">🔎 Ver jogo</a>'
+
+    def fmt_pct(val):
+        if val is None or (isinstance(val, float) and pd.isna(val)):
+            return "N/A"
+        try:
+            return f"{float(val):.0f}%"
+        except Exception:
+            return "N/A"
+
+    def fmt_num(val, nd=2):
+        if val is None or (isinstance(val, float) and pd.isna(val)):
+            return "N/A"
+        try:
+            return f"{float(val):.{nd}f}"
+        except Exception:
+            return "N/A"
+
+    over15_media = row.get('Prob_Over1.5', row.get('Over15_MEDIA', 0))
+    over25_media = row.get('Prob_Over2.5', row.get('Over25_MEDIA', 0))
     over_both = row.get('Over_BOTH', 0)
-    
-    mensagem += (
-        f"📊 <b>Probabilidades de Média:</b>\n"
-        f"• Over 1.5: {over15_media:.0f}%\n"
-        f"• Over 2.5: {over25_media:.0f}%\n"
-        f"• Ambas Marcam/Over Total: {over_both:.0f}%\n\n"
-    )
-    
-    # === DETALHES DA DIVISÃO (CASA/FORA) ===
-    
-    # Usando .get() e round(0) para as colunas originais
+
     over15_h = row.get('Over15_H', 0)
     over25_h = row.get('Over25_H', 0)
     btts_h = row.get('BTTS_H', 0)
-    
     over15_a = row.get('Over15_A', 0)
     over25_a = row.get('Over25_A', 0)
     btts_a = row.get('BTTS_A', 0)
-    
-    mensagem += (
-        f"🏠 <b>{row.get('Time 1', 'Casa')} (H) | {row.get('Time 2', 'Fora')} (A)</b>\n"
-        f"O1.5: {over15_h:.0f}% | {over15_a:.0f}%\n"
-        f"O2.5: {over25_h:.0f}% | {over25_a:.0f}%\n"
-        f"BTTS: {btts_h:.0f}% | {btts_a:.0f}%\n"
+
+    ppg_h = row.get('PPG_Casa', 0)
+    ppg_a = row.get('PPG_Fora', 0)
+    media_gols_h = row.get('Media_Gols_Casa', 0)
+    media_gols_a = row.get('MediaGols_Fora', 0)
+
+    gm_h = row.get('Gols_Marcados_Casa', 0)
+    gs_h = row.get('Gols_Sofridos_Casa', 0)
+    gm_a = row.get('Gols_Marcados_Fora', 0)
+    gs_a = row.get('Gols_Sofridos_Fora', 0)
+
+    vitorias_h = row.get('Vitorias_H', row.get('%Vitorias_H', None))
+    vitorias_a = row.get('Vitorias_A', row.get('%Vitorias_A', None))
+
+    mensagem = (
+        f"{header}\n"
+        f"<b>{time1}</b> vs <b>{time2}</b> | {link_google}\n"
+        f"País: {pais}" + (f" | Liga: {liga}\n" if liga else "\n") +
+        f"Horário: {horario}\n\n"
+        f"🔥 <b>MÉDIA GERAL:</b> {fmt_pct(media_prob)}\n"
+        f"✅ <b>Partidas Analisadas:</b> {fmt_num(partidas, nd=0)}\n\n"
+        f"📊 <b>Probabilidades (Médias):</b>\n"
+        f"• Over 1.5: {fmt_pct(over15_media)}\n"
+        f"• Over 2.5: {fmt_pct(over25_media)}\n"
+        f"• Ambas/Over Total: {fmt_pct(over_both)}\n\n"
+        f"🏠 <b>{time1} (H) | {time2} (A)</b>\n"
+        f"O1.5: {fmt_pct(over15_h)} | {fmt_pct(over15_a)}\n"
+        f"O2.5: {fmt_pct(over25_h)} | {fmt_pct(over25_a)}\n"
+        f"BTTS: {fmt_pct(btts_h)} | {fmt_pct(btts_a)}\n\n"
+        f"📈 <b>PPG</b>: {fmt_num(ppg_h, nd=2)} | {fmt_num(ppg_a, nd=2)}\n"
+        f"⚽ <b>Média de Gols</b>: {fmt_num(media_gols_h, nd=2)} | {fmt_num(media_gols_a, nd=2)}\n"
+        f"🎯 <b>Gols Marcados/Sofridos</b> (H): {fmt_num(gm_h, nd=0)}/{fmt_num(gs_h, nd=0)} | (A): {fmt_num(gm_a, nd=0)}/{fmt_num(gs_a, nd=0)}\n"
     )
+    if vitorias_h is not None or vitorias_a is not None:
+        mensagem += f"🏆 <b>%Vitórias</b>: {fmt_pct(vitorias_h)} | {fmt_pct(vitorias_a)}\n"
 
     return mensagem
 

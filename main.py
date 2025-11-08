@@ -86,39 +86,61 @@ def filtrar_alertas(df, perc_min=60):
          
     return df_filtrado[condition]
 
+# Arquivo: main.py (função enviar_alertas_meia_hora)
 def enviar_alertas_meia_hora(df):
-    """Prepara o DF para o envio de Alertas de 30 minutos."""
+    """Prepara o DF para envio até 2 horas antes do jogo com correção de fuso."""
+    HORARIO_OFFSET_HORAS = -3  # corrige +3h vindas do DF
+    ALERT_WINDOW_MINUTES = 120  # janela de busca: até 2 horas
     agora = datetime.now(tz)
     df_alertar = []
 
     for _, row in df.iterrows():
-        horario_value = row['Horário']
-        
+        horario_value = row.get('Horário')
+
         try:
-            # Lógica para converter Horário para datetime com fuso
+            # Parse base (horário do DF, assumido como HH:MM)
             if isinstance(horario_value, str):
-                jogo_time = datetime.strptime(horario_value, '%H:%M').replace(
+                jogo_time = datetime.strptime(horario_value.strip(), '%H:%M').replace(
                     year=agora.year, month=agora.month, day=agora.day, tzinfo=tz
                 )
-            elif isinstance(horario_value, (datetime, dt_time)): 
-                jogo_time = datetime.combine(agora.date(), horario_value).replace(tzinfo=tz)
+            elif isinstance(horario_value, (datetime, dt_time)):
+                base_time = horario_value if isinstance(horario_value, datetime) else datetime.combine(agora.date(), horario_value)
+                jogo_time = base_time.replace(tzinfo=tz)
             else:
                 continue
 
-            delta = jogo_time - agora
-            
-            # Condição: Entre 0 e 30 minutos antes do jogo
-            if timedelta(minutes=0) <= delta <= timedelta(minutes=30):
-                # Adiciona uma coluna para identificar o tipo de alerta
-                row['Tipo_Alerta'] = "ALERTA_30MIN"
+            # Corrigir a defasagem de +3h ao enviar
+            jogo_time_corrigido = jogo_time + timedelta(hours=HORARIO_OFFSET_HORAS)
+            delta = jogo_time_corrigido - agora
+
+            # Não enviar se já passou
+            if delta < timedelta(minutes=0):
+                continue
+
+            # Enviar entre 0 e 120 minutos antes
+            if timedelta(minutes=0) <= delta <= timedelta(minutes=ALERT_WINDOW_MINUTES):
+                row = row.copy()
+                row['Horário'] = jogo_time_corrigido.strftime('%H:%M')  # exibição corrigida
+                row['Tipo_Alerta'] = "ALERTA_120MIN"
                 df_alertar.append(row)
-                
-        except Exception as e:
-            # print(f"Aviso: Erro ao processar horário: {e}")
+
+        except Exception:
             continue
-            
+
     return pd.DataFrame(df_alertar)
 
+def filtrar_alertas_over15_e_partidas(df):
+    """Filtra jogos com Over 1.5 >= 70% e Partidas > 7."""
+    df2 = df.copy()
+    # Garante cálculos
+    df2 = calcular_probabilidades(df2)
+    # Usa Prob_Over1.5 (se existir) senão cai para Over15_MEDIA
+    if 'Prob_Over1.5' in df2.columns:
+        over15_col = pd.to_numeric(df2['Prob_Over1.5'], errors='coerce').fillna(0)
+    else:
+        over15_col = pd.to_numeric(df2.get('Over15_MEDIA', 0), errors='coerce').fillna(0)
+    partidas_col = pd.to_numeric(df2.get('Partidas', 0), errors='coerce').fillna(0)
+    return df2[(over15_col >= 70) & (partidas_col > 7)]
 
 # ----------------------------------------------------------------------
 # --- Loop principal (SIMPLIFICADO) ---
@@ -147,38 +169,25 @@ if __name__ == '__main__':
             else:
                 # --- 2. PROCESSAMENTO ---
                 df = limpar_e_converter_dados(df)
-                df = calcular_probabilidades(df) # Garante que as médias e MÉDIA_PROB existam
+                df = calcular_probabilidades(df)  # Mantém colunas de probabilidade
 
-                # --- 3. VERIFICAÇÃO DE ALERTAS ---
-                
-                # 3a. Alerta de jogos próximos (30 minutos antes)
-                df_filtrado_30min = filtrar_alertas(df, perc_min=60) # Filtro de probabilidade
-                df_alertas_30min = enviar_alertas_meia_hora(df_filtrado_30min) # Filtro de tempo e coluna 'Tipo_Alerta'
-                
-                # 3b. Alerta de alta probabilidade (HIGH PROB)
-                # Aplicamos o filtro de alta prob aqui para criar a coluna 'Tipo_Alerta'
-                df_high_prob = df.copy()
-                df_high_prob = df_high_prob[
-                    (df_high_prob.get('MÉDIA_PROB', 0) >= 70) & 
-                    (df_high_prob.get('Partidas', 0) >= 10)
-                ].copy()
-                df_high_prob['Tipo_Alerta'] = "HIGH_PROB"
-                
-                # --- 4. CONSOLIDAÇÃO E ENVIO ÚNICO ---
-                
-                # Concatena os dois tipos de alerta para envio
-                df_todos_alertas = pd.concat([df_alertas_30min, df_high_prob], ignore_index=True)
-                
-                if not df_todos_alertas.empty:
-                    # Envia usando a nova função que verifica duplicidade
-                    df_enviados = enviar_alertes_unicos(df_todos_alertas, token, usuarios)
-                    
+                # --- 3. VERIFICAÇÃO DE ALERTAS (até 2 horas antes com critérios) ---
+                df_filtrado_criterios = filtrar_alertas_over15_e_partidas(df)
+                df_alertas_30min = enviar_alertas_meia_hora(df_filtrado_criterios)
+
+                # Define tipo de alerta para formatação (até 2h)
+                if not df_alertas_30min.empty:
+                    df_alertas_30min['Tipo_Alerta'] = "ALERTA_120MIN"
+
+                # --- 4. ENVIO ÚNICO ---
+                if not df_alertas_30min.empty:
+                    df_enviados = enviar_alertes_unicos(df_alertas_30min, token, usuarios)
                     if not df_enviados.empty:
-                        print(f"[{agora_str}] ✅ {len(df_enviados)} novos alertas (30min/HIGH PROB) enviados.")
+                        print(f"[{agora_str}] ✅ {len(df_enviados)} novos alertas (até 2h) enviados.")
                     else:
                         print(f"[{agora_str}] ⏸️ Nenhum novo alerta atende aos critérios de envio único.")
                 else:
-                     print(f"[{agora_str}] Nenhum jogo atende aos critérios de alerta (30min ou HIGH PROB).")
+                    print(f"[{agora_str}] Nenhum jogo atende aos critérios (Over1.5>=70%, Partidas>7 e até 2h).")
 
             # --- FIM DO CICLO BEM-SUCEDIDO ---
             print(f"[{agora_str}] CICLO CONCLUÍDO COM SUCESSO. Indo para o SLEEP.")
