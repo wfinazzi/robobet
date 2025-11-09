@@ -1,0 +1,611 @@
+[1mdiff --cc logs/results_update.sql[m
+[1mindex 2947e00,c0a9c50..0000000[m
+[1m--- a/logs/results_update.sql[m
+[1m+++ b/logs/results_update.sql[m
+[36m@@@ -29580,7 -29580,7 +29580,11 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Nenhum match unívoco por LIKE para: 'Danubio' vs 'Plaza Colonia' na data 2025-11-08[m
+  -- Fim UPDATE: processadas=1497[m
+  [m
+[32m++<<<<<<< HEAD[m
+[32m +-- Início UPDATE resultados: 2025-11-08T21:46:39.768817[m
+[32m++=======[m
+[32m+ -- Início UPDATE resultados: 2025-11-08T23:20:35.035650[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  -- CSV: resultados_futebol_hoje.csv; fallback_like=True; remove_prefixes=True; remove_suffixes=True; remove_categories=True[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Liga Profesional Argentina' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Rosario Central' AND TIME_FORA = 'San Lorenzo'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%rosario central%', TF LIKE '%san lorenzo%'; matches=0[m
+[36m@@@ -32424,10 -32424,7 +32428,14 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%union%bremen%', TF LIKE '%bts neustadt%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%union%bremen%', TF LIKE '%bts%neustadt%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'BTS Neustadt' vs 'Union Bremen' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 1, LIGA = 'Oberliga - Bremen' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Hemelingen' AND TIME_FORA = 'Geestemünde'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%hemelingen%', TF LIKE '%geestemünde%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%geestemünde%', TF LIKE '%hemelingen%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Hemelingen' vs 'Geestemünde' na data 2025-11-08[m
+[32m++=======[m
+[32m+ UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 1, LIGA = 'Oberliga - Bremen' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Hemelingen' AND TIME_FORA = 'Geestemünde'; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 3, LIGA = 'NB III - Northeast' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'FC Hatvan' AND TIME_FORA = 'Diósgyőr II'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fc hatvan%', TF LIKE '%diósgy r ii%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fc hatvan%', TF LIKE '%diósgy r%'; matches=0[m
+[36m@@@ -34386,10 -34383,7 +34394,14 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%eintracht%frankfurt%', TF LIKE '%vfl wolfsburg%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%eintracht%frankfurt%', TF LIKE '%vfl%wolfsburg%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'VfL Wolfsburg W' vs 'Eintracht Frankfurt W' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Oberliga - Niederrhein' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Meerbusch' AND TIME_FORA = 'Sonsbeck'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%meerbusch%', TF LIKE '%sonsbeck%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sonsbeck%', TF LIKE '%meerbusch%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Meerbusch' vs 'Sonsbeck' na data 2025-11-08[m
+[32m++=======[m
+[32m+ UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Oberliga - Niederrhein' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Meerbusch' AND TIME_FORA = 'Sonsbeck'; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 5, GOLS_FORA = 1, LIGA = 'Oberliga - Baden-Württemberg' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Göppinger SV' AND TIME_FORA = 'Backnang'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%göppinger sv%', TF LIKE '%backnang%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%göppinger%', TF LIKE '%backnang%'; matches=0[m
+[36m@@@ -34669,8 -34663,9 +34681,14 @@@[m [mUPDATE jogos SET GOLS_CASA = 0, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%deisenhofen%', TF LIKE '%türkspor%augsburg%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Türkspor Augsburg' vs 'Deisenhofen' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 2, LIGA = 'Oberliga - Bayern Süd' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Nordlingen' AND TIME_FORA = 'Heimstetten'; -- rows=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nordlingen%', TF LIKE '%heimstetten%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 2, LIGA = 'Oberliga - Bayern Süd' WHERE ID = 1; -- rows=0[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nordlingen%', TF LIKE '%heimstetten%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%heimstetten%', TF LIKE '%nordlingen%'; matches=0[m
+[32m+ -- Nenhum match unívoco por LIKE para: 'Nordlingen' vs 'Heimstetten' na data 2025-11-08[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 4, GOLS_FORA = 2, LIGA = 'Oberliga - Schleswig-Holstein' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Heider SV' AND TIME_FORA = 'Hohenwestedt'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%heider sv%', TF LIKE '%hohenwestedt%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%heider%', TF LIKE '%hohenwestedt%'; matches=0[m
+[36m@@@ -36549,12 -36544,6 +36567,15 @@@[m [mUPDATE jogos SET GOLS_CASA = 0, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%canada%', TF LIKE '%france u17%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%canada%', TF LIKE '%france%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'France U17' vs 'Canada W U17' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 3, LIGA = 'Premier League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Royal Leopards' AND TIME_FORA = 'Tabankulu'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%royal leopards%', TF LIKE '%tabankulu%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%royal%leopards%', TF LIKE '%tabankulu%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tabankulu%', TF LIKE '%royal leopards%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tabankulu%', TF LIKE '%royal%leopards%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Royal Leopards' vs 'Tabankulu' na data 2025-11-08[m
+[32m++=======[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'U19 Divisie 1' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'PSV U19' AND TIME_FORA = 'Ajax U19'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%psv u19%', TF LIKE '%ajax u19%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%psv u19%', TF LIKE '%ajax%'; matches=0[m
+[36m@@@ -36761,8 -36750,8 +36782,13 @@@[m [mUPDATE jogos SET GOLS_CASA = 0, GOLS_FO[m
+  -- Nenhum match unívoco por LIKE para: 'Como' vs 'Cagliari' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Lecce' AND TIME_FORA = 'Verona'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%lecce%', TF LIKE '%verona%'; matches=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%verona%', TF LIKE '%lecce%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Lecce' vs 'Verona' na data 2025-11-08[m
+[32m++=======[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%verona%', TF LIKE '%lecce%'; matches=1[m
+[32m+ UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Serie A' WHERE ID = 55; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'HNL' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'NK Lokomotiva Zagreb' AND TIME_FORA = 'NK Slaven Belupo'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nk lokomotiva zagreb%', TF LIKE '%nk slaven belupo%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nk lokomotiva zagreb%', TF LIKE '%nk%slaven%belupo%'; matches=0[m
+[36m@@@ -37143,12 -37132,7 +37169,16 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%graafschap%', TF LIKE '%willem tilburg%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%graafschap%', TF LIKE '%willem%tilburg%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Willem II Tilburg U21' vs 'De Graafschap U21' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Serie D - Girone C' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Bassano Virtus' AND TIME_FORA = 'Este'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%bassano virtus%', TF LIKE '%este%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%bassano%virtus%', TF LIKE '%este%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%este%', TF LIKE '%bassano virtus%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%este%', TF LIKE '%bassano%virtus%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Bassano Virtus' vs 'Este' na data 2025-11-08[m
+[32m++=======[m
+[32m+ UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Serie D - Girone C' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Bassano Virtus' AND TIME_FORA = 'Este'; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Serie D - Girone G' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Real Monterotondo' AND TIME_FORA = 'Budoni'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real monterotondo%', TF LIKE '%budoni%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real%monterotondo%', TF LIKE '%budoni%'; matches=0[m
+[36m@@@ -37306,8 -37290,11 +37336,16 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%urartu%', TF LIKE '%ararat%armenia%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Ararat-Armenia' vs 'FC Urartu' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 3, LIGA = 'First League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'KAMAZ' AND TIME_FORA = 'Volga Ulyanovsk'; -- rows=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kamaz%', TF LIKE '%volga ulyanovsk%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 3, LIGA = 'First League' WHERE ID = 5; -- rows=0[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kamaz%', TF LIKE '%volga ulyanovsk%'; matches=0[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kamaz%', TF LIKE '%volga%ulyanovsk%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volga ulyanovsk%', TF LIKE '%kamaz%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volga%ulyanovsk%', TF LIKE '%kamaz%'; matches=0[m
+[32m+ -- Nenhum match unívoco por LIKE para: 'KAMAZ' vs 'Volga Ulyanovsk' na data 2025-11-08[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Ligue 1' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Saint Eloi Lupopo' AND TIME_FORA = 'Simba'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%saint eloi lupopo%', TF LIKE '%simba%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%saint%eloi%lupopo%', TF LIKE '%simba%'; matches=0[m
+[36m@@@ -37653,11 -37640,8 +37691,16 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%gimnástica%segoviana%', TF LIKE '%racing%santander%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Racing Santander II' vs 'Gimnástica Segoviana' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 5, GOLS_FORA = 2, LIGA = 'Derde Divisie - Saturday' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Hercules' AND TIME_FORA = 'Hsc 21'; -- rows=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%hercules%', TF LIKE '%hsc 21%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%hercules%', TF LIKE '%hsc%21%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hsc 21%', TF LIKE '%hercules%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hsc%21%', TF LIKE '%hercules%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Hercules' vs 'Hsc 21' na data 2025-11-08[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%hercules%', TF LIKE '%hsc 21%'; matches=1[m
+[32m+ UPDATE jogos SET GOLS_CASA = 5, GOLS_FORA = 2, LIGA = 'Derde Divisie - Saturday' WHERE ID = 196; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 1, LIGA = 'Derde Divisie - Sunday' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Vvsb' AND TIME_FORA = 'FC Lisse'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%vvsb%', TF LIKE '%fc lisse%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%vvsb%', TF LIKE '%lisse%'; matches=0[m
+[36m@@@ -39988,12 -39972,8 +40031,17 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%club leon u21%', TF LIKE '%puebla u21%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%club leon u21%', TF LIKE '%puebla%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%leon%', TF LIKE '%puebla u21%'; matches=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%leon%', TF LIKE '%puebla%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%puebla u21%', TF LIKE '%club leon u21%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%puebla u21%', TF LIKE '%leon%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%puebla%', TF LIKE '%club leon u21%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%puebla%', TF LIKE '%leon%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Club Leon U21' vs 'Puebla U21' na data 2025-11-08[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%leon%', TF LIKE '%puebla%'; matches=1[m
+[32m+ UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 2, LIGA = 'Liga MX U21' WHERE ID = 8; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 2, LIGA = 'Liga MX U21' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Guadalajara Chivas U21' AND TIME_FORA = 'Monterrey U21'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%guadalajara chivas u21%', TF LIKE '%monterrey u21%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%guadalajara chivas u21%', TF LIKE '%monterrey%'; matches=0[m
+[36m@@@ -40032,12 -40012,8 +40080,17 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%toluca u21%', TF LIKE '%club america u21%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%toluca u21%', TF LIKE '%america%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%toluca%', TF LIKE '%club america u21%'; matches=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%toluca%', TF LIKE '%america%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%club america u21%', TF LIKE '%toluca u21%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%club america u21%', TF LIKE '%toluca%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%america%', TF LIKE '%toluca u21%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%america%', TF LIKE '%toluca%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Toluca U21' vs 'Club America U21' na data 2025-11-08[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%toluca%', TF LIKE '%america%'; matches=1[m
+[32m+ UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Liga MX U21' WHERE ID = 7; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 1, LIGA = 'Premier League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Dire Dawa Kenema' AND TIME_FORA = 'Welwalo Adigrat Uni'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dire dawa kenema%', TF LIKE '%welwalo adigrat uni%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dire dawa kenema%', TF LIKE '%welwalo%adigrat%uni%'; matches=0[m
+[36m@@@ -41698,12 -41674,8 +41751,17 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%anderlecht w%', TF LIKE '%club brugge w%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%anderlecht w%', TF LIKE '%brugge%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%anderlecht%', TF LIKE '%club brugge w%'; matches=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%anderlecht%', TF LIKE '%brugge%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%club brugge w%', TF LIKE '%anderlecht w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%club brugge w%', TF LIKE '%anderlecht%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%brugge%', TF LIKE '%anderlecht w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%brugge%', TF LIKE '%anderlecht%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Anderlecht W' vs 'Club Brugge W' na data 2025-11-08[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%anderlecht%', TF LIKE '%brugge%'; matches=1[m
+[32m+ UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 1, LIGA = 'Super League Women' WHERE ID = 172; -- rows=1[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 2, LIGA = 'Super League Women' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Standard Liege W' AND TIME_FORA = 'Zulte-Waregem W'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%standard liege w%', TF LIKE '%zulte-waregem w%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%standard liege w%', TF LIKE '%zulte waregem%'; matches=0[m
+[36m@@@ -41794,12 -41766,6 +41852,15 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%são cristóvão rj%', TF LIKE '%artsul%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%são%cristóvão%rj%', TF LIKE '%artsul%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Artsul' vs 'São Cristóvão RJ' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Carioca - 2' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Petrópolis' AND TIME_FORA = 'Campo Grande'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%petrópolis%', TF LIKE '%campo grande%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%petrópolis%', TF LIKE '%campo%grande%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%campo grande%', TF LIKE '%petrópolis%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%campo%grande%', TF LIKE '%petrópolis%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Petrópolis' vs 'Campo Grande' na data 2025-11-08[m
+[32m++=======[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Carioca - 2' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Nova Cidade' AND TIME_FORA = 'Friburguense'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nova cidade%', TF LIKE '%friburguense%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%nova%cidade%', TF LIKE '%friburguense%'; matches=0[m
+[36m@@@ -42006,16 -41972,6 +42067,19 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta petegem%', TF LIKE '%oostkamp%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta%petegem%', TF LIKE '%oostkamp%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Oostkamp' vs 'Sparta Petegem' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'Goiano - 3' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Santa Helena' AND TIME_FORA = 'ABD FC'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%santa helena%', TF LIKE '%abd fc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%santa helena%', TF LIKE '%abd%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%santa%helena%', TF LIKE '%abd fc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%santa%helena%', TF LIKE '%abd%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%abd fc%', TF LIKE '%santa helena%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%abd fc%', TF LIKE '%santa%helena%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%abd%', TF LIKE '%santa helena%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%abd%', TF LIKE '%santa%helena%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Santa Helena' vs 'ABD FC' na data 2025-11-08[m
+[32m++=======[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Tercera División RFEF - Group 13' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Yeclano II' AND TIME_FORA = 'Olímpico Totana'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%yeclano ii%', TF LIKE '%olímpico totana%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%yeclano ii%', TF LIKE '%olímpico%totana%'; matches=0[m
+[36m@@@ -42071,8 -42027,9 +42135,14 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico%mg%', TF LIKE '%sport%recife%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Sport Recife' vs 'Atletico-MG' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Serie B' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Novorizontino' AND TIME_FORA = 'remo'; -- rows=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%novorizontino%', TF LIKE '%remo%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Serie B' WHERE ID = 9; -- rows=0[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%novorizontino%', TF LIKE '%remo%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%remo%', TF LIKE '%novorizontino%'; matches=0[m
+[32m+ -- Nenhum match unívoco por LIKE para: 'Novorizontino' vs 'remo' na data 2025-11-08[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Eredivisie' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Fortuna Sittard' AND TIME_FORA = 'Heerenveen'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fortuna sittard%', TF LIKE '%heerenveen%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fortuna%sittard%', TF LIKE '%heerenveen%'; matches=0[m
+[36m@@@ -42090,8 -42047,11 +42160,16 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%saint%etienne%', TF LIKE '%estac%troyes%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Estac Troyes' vs 'Saint Etienne' na data 2025-11-08[m
+  UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Challenger Pro League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Kortrijk' AND TIME_FORA = 'Patro Eisden'; -- rows=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kortrijk%', TF LIKE '%patro eisden%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Challenger Pro League' WHERE ID = 11; -- rows=0[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kortrijk%', TF LIKE '%patro eisden%'; matches=0[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%kortrijk%', TF LIKE '%patro%eisden%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%patro eisden%', TF LIKE '%kortrijk%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%patro%eisden%', TF LIKE '%kortrijk%'; matches=0[m
+[32m+ -- Nenhum match unívoco por LIKE para: 'Kortrijk' vs 'Patro Eisden' na data 2025-11-08[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Challenger Pro League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Club Brugge II' AND TIME_FORA = 'K. Lierse S.K.'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%club brugge ii%', TF LIKE '%k. lierse s.k.%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%club brugge ii%', TF LIKE '%k lierse s k%'; matches=0[m
+[36m@@@ -42168,7 -42128,7 +42246,11 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sc braga b%', TF LIKE '%paredes%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%braga%', TF LIKE '%paredes%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Paredes' vs 'SC Braga B' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Second Amateur Division - ACFF' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Braine' AND TIME_FORA = 'Aywaille'; -- rows=0[m
+[32m++=======[m
+[32m+ UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Second Amateur Division - ACFF' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Braine' AND TIME_FORA = 'Aywaille'; -- rows=0[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%braine%', TF LIKE '%aywaille%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%aywaille%', TF LIKE '%braine%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Braine' vs 'Aywaille' na data 2025-11-08[m
+[36m@@@ -42190,10 -42150,6 +42272,13 @@@[m [mUPDATE jogos SET GOLS_CASA = 1, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%oudenaarde%', TF LIKE '%rfc wetteren%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%oudenaarde%', TF LIKE '%rfc%wetteren%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'RFC Wetteren' vs 'Oudenaarde' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 1, LIGA = 'Second Amateur Division - VFV B' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Wellen' AND TIME_FORA = 'Rotselaar'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%wellen%', TF LIKE '%rotselaar%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%rotselaar%', TF LIKE '%wellen%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Wellen' vs 'Rotselaar' na data 2025-11-08[m
+[32m++=======[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 3, LIGA = 'Second Amateur Division - VFV B' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Cappellen' AND TIME_FORA = 'Londerzeel'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%cappellen%', TF LIKE '%londerzeel%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%londerzeel%', TF LIKE '%cappellen%'; matches=0[m
+[36m@@@ -42208,16 -42164,6 +42293,19 @@@[m [mUPDATE jogos SET GOLS_CASA = 2, GOLS_FO[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%aseev%', TF LIKE '%guanabara city%'; matches=0[m
+  -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%aseev%', TF LIKE '%guanabara%city%'; matches=0[m
+  -- Nenhum match unívoco por LIKE para: 'Guanabara City' vs 'ASEEV' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Goiano - 3' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'America GO' AND TIME_FORA = 'Crixás EC'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%america go%', TF LIKE '%crixás ec%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%america go%', TF LIKE '%crixás%ec%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%america%go%', TF LIKE '%crixás ec%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%america%go%', TF LIKE '%crixás%ec%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%crixás ec%', TF LIKE '%america go%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%crixás ec%', TF LIKE '%america%go%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%crixás%ec%', TF LIKE '%america go%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%crixás%ec%', TF LIKE '%america%go%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'America GO' vs 'Crixás EC' na data 2025-11-08[m
+[32m++=======[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+  UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 4, LIGA = 'Tercera División RFEF - Group 4' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Real Sociedad III' AND TIME_FORA = 'Lagun Onak'; -- rows=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real sociedad iii%', TF LIKE '%lagun onak%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real sociedad iii%', TF LIKE '%lagun%onak%'; matches=0[m
+[36m@@@ -42318,13038 -42264,12 +42406,13048 @@@[m [mUPDATE jogos SET GOLS_CASA = 0, GOLS_FO[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%servette fc%', TF LIKE '%fc thun%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%servette fc%', TF LIKE '%thun%'; matches=0[m
+  -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%servette%', TF LIKE '%fc thun%'; matches=0[m
+[32m++<<<<<<< HEAD[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%servette%', TF LIKE '%thun%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Super League' WHERE ID = 15; -- rows=0[m
+[32m++=======[m
+[32m+ -- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%servette%', TF LIKE '%thun%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc thun%', TF LIKE '%servette fc%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc thun%', TF LIKE '%servette%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%thun%', TF LIKE '%servette fc%'; matches=0[m
+[32m+ -- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%thun%', TF LIKE '%servette%'; matches=0[m
+[32m+ -- Nenhum match unívoco por LIKE para: 'Servette FC' vs 'FC Thun' na data 2025-11-08[m
+[32m++>>>>>>> c40a8a0 (Vou tirar isso depois)[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = '2. Bundesliga' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = '1. FC Kaiserslautern' AND TIME_FORA = 'Hertha BSC'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1. fc kaiserslautern%', TF LIKE '%hertha bsc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1. fc kaiserslautern%', TF LIKE '%hertha%bsc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1 kaiserslautern%', TF LIKE '%hertha bsc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1 kaiserslautern%', TF LIKE '%hertha%bsc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1%kaiserslautern%', TF LIKE '%hertha bsc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%1%kaiserslautern%', TF LIKE '%hertha%bsc%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha bsc%', TF LIKE '%1. fc kaiserslautern%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha bsc%', TF LIKE '%1 kaiserslautern%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha bsc%', TF LIKE '%1%kaiserslautern%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha%bsc%', TF LIKE '%1. fc kaiserslautern%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha%bsc%', TF LIKE '%1 kaiserslautern%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%hertha%bsc%', TF LIKE '%1%kaiserslautern%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: '1. FC Kaiserslautern' vs 'Hertha BSC' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Primera División - Clausura' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Danubio' AND TIME_FORA = 'Plaza Colonia'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%danubio%', TF LIKE '%plaza colonia%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%danubio%', TF LIKE '%plaza%colonia%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%plaza colonia%', TF LIKE '%danubio%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%plaza%colonia%', TF LIKE '%danubio%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Danubio' vs 'Plaza Colonia' na data 2025-11-08[m
+[32m++<<<<<<< HEAD[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 2, LIGA = 'Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Parma' AND TIME_FORA = 'AC Milan'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 1, LIGA = 'Jupiler Pro League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Antwerp' AND TIME_FORA = 'RAAL La Louvière'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%antwerp%', TF LIKE '%raal la louvière%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%antwerp%', TF LIKE '%raal louvière%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%antwerp%', TF LIKE '%raal%louvière%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%raal la louvière%', TF LIKE '%antwerp%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%raal louvière%', TF LIKE '%antwerp%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%raal%louvière%', TF LIKE '%antwerp%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Antwerp' vs 'RAAL La Louvière' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'Liga Profesional Argentina' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Huracan' AND TIME_FORA = 'Newells Old Boys'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%huracan%', TF LIKE '%newells old boys%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%huracan%', TF LIKE '%newells%old%boys%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%newells old boys%', TF LIKE '%huracan%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%newells%old%boys%', TF LIKE '%huracan%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Huracan' vs 'Newells Old Boys' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Liga Profesional Argentina' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Racing Club' AND TIME_FORA = 'Defensa Y Justicia'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%racing club%', TF LIKE '%defensa y justicia%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%racing club%', TF LIKE '%defensa%y%justicia%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%racing%', TF LIKE '%defensa y justicia%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%racing%', TF LIKE '%defensa%y%justicia%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%defensa y justicia%', TF LIKE '%racing club%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%defensa y justicia%', TF LIKE '%racing%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%defensa%y%justicia%', TF LIKE '%racing club%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%defensa%y%justicia%', TF LIKE '%racing%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Racing Club' vs 'Defensa Y Justicia' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 0, LIGA = 'Premier League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Chelsea' AND TIME_FORA = 'Wolves'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%chelsea%', TF LIKE '%wolves%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%wolves%', TF LIKE '%chelsea%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Chelsea' vs 'Wolves' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Eredivisie' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'PEC Zwolle' AND TIME_FORA = 'Sparta Rotterdam'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pec zwolle%', TF LIKE '%sparta rotterdam%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pec zwolle%', TF LIKE '%sparta%rotterdam%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pec%zwolle%', TF LIKE '%sparta rotterdam%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pec%zwolle%', TF LIKE '%sparta%rotterdam%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta rotterdam%', TF LIKE '%pec zwolle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta rotterdam%', TF LIKE '%pec%zwolle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta%rotterdam%', TF LIKE '%pec zwolle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sparta%rotterdam%', TF LIKE '%pec%zwolle%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'PEC Zwolle' vs 'Sparta Rotterdam' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'La Liga' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Espanyol' AND TIME_FORA = 'Villarreal'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 2, LIGA = 'Segunda División' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Malaga' AND TIME_FORA = 'Cordoba'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 4, GOLS_FORA = 0, LIGA = 'Feminine Division 1' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Paris Saint Germain W' AND TIME_FORA = 'FC Fleury 91 W'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain w%', TF LIKE '%fc fleury 91 w%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain w%', TF LIKE '%fleury 91%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain w%', TF LIKE '%fleury%91%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain%', TF LIKE '%fc fleury 91 w%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain%', TF LIKE '%fleury 91%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris saint germain%', TF LIKE '%fleury%91%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris%saint%germain%', TF LIKE '%fc fleury 91 w%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris%saint%germain%', TF LIKE '%fleury 91%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%paris%saint%germain%', TF LIKE '%fleury%91%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc fleury 91 w%', TF LIKE '%paris saint germain w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc fleury 91 w%', TF LIKE '%paris saint germain%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc fleury 91 w%', TF LIKE '%paris%saint%germain%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury 91%', TF LIKE '%paris saint germain w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury 91%', TF LIKE '%paris saint germain%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury 91%', TF LIKE '%paris%saint%germain%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury%91%', TF LIKE '%paris saint germain w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury%91%', TF LIKE '%paris saint germain%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fleury%91%', TF LIKE '%paris%saint%germain%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Paris Saint Germain W' vs 'FC Fleury 91 W' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Liga Mayor' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Delfines Del Este' AND TIME_FORA = 'Moca'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%delfines del este%', TF LIKE '%moca%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%delfines%del%este%', TF LIKE '%moca%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%moca%', TF LIKE '%delfines del este%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%moca%', TF LIKE '%delfines%del%este%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Delfines Del Este' vs 'Moca' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 0, LIGA = 'Liga Mayor' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Jarabacoa' AND TIME_FORA = 'Salcedo'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%jarabacoa%', TF LIKE '%salcedo%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%salcedo%', TF LIKE '%jarabacoa%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Jarabacoa' vs 'Salcedo' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 2, LIGA = 'Primera División RFEF - Group 2' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Real Murcia' AND TIME_FORA = 'Gimnastic'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real murcia%', TF LIKE '%gimnastic%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%real%murcia%', TF LIKE '%gimnastic%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%gimnastic%', TF LIKE '%real murcia%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%gimnastic%', TF LIKE '%real%murcia%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Real Murcia' vs 'Gimnastic' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Primera División RFEF - Group 1' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Arenas Getxo' AND TIME_FORA = 'Osasuna II'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%arenas getxo%', TF LIKE '%osasuna ii%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%arenas getxo%', TF LIKE '%osasuna%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%arenas%getxo%', TF LIKE '%osasuna ii%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%arenas%getxo%', TF LIKE '%osasuna%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%osasuna ii%', TF LIKE '%arenas getxo%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%osasuna ii%', TF LIKE '%arenas%getxo%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%osasuna%', TF LIKE '%arenas getxo%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%osasuna%', TF LIKE '%arenas%getxo%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Arenas Getxo' vs 'Osasuna II' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'USL Super League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Brooklyn W' AND TIME_FORA = 'DC Power W'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 4, LIGA = 'Ligue 1' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Monaco' AND TIME_FORA = 'Lens'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 3, GOLS_FORA = 1, LIGA = 'Primera División' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Juan Pablo II College' AND TIME_FORA = 'Atletico Grau'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan pablo ii college%', TF LIKE '%atletico grau%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan pablo ii college%', TF LIKE '%atletico%grau%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan pablo college%', TF LIKE '%atletico grau%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan pablo college%', TF LIKE '%atletico%grau%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan%pablo%college%', TF LIKE '%atletico grau%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%juan%pablo%college%', TF LIKE '%atletico%grau%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico grau%', TF LIKE '%juan pablo ii college%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico grau%', TF LIKE '%juan pablo college%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico grau%', TF LIKE '%juan%pablo%college%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico%grau%', TF LIKE '%juan pablo ii college%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico%grau%', TF LIKE '%juan pablo college%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%atletico%grau%', TF LIKE '%juan%pablo%college%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Juan Pablo II College' vs 'Atletico Grau' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 2, LIGA = 'Primera División' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Palestino' AND TIME_FORA = 'Coquimbo Unido'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 4, LIGA = 'Segunda División' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Trasandino' AND TIME_FORA = 'D. Melipilla'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%trasandino%', TF LIKE '%d. melipilla%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%trasandino%', TF LIKE '%d melipilla%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%trasandino%', TF LIKE '%d%melipilla%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%d. melipilla%', TF LIKE '%trasandino%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%d melipilla%', TF LIKE '%trasandino%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%d%melipilla%', TF LIKE '%trasandino%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Trasandino' vs 'D. Melipilla' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 2, LIGA = 'Primeira Liga' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Santa Clara' AND TIME_FORA = 'Sporting CP'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 4, GOLS_FORA = 1, LIGA = 'Liga Premier Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Pioneros de Cancún' AND TIME_FORA = 'Tapachula'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pioneros de cancún%', TF LIKE '%tapachula%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pioneros cancún%', TF LIKE '%tapachula%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%pioneros%cancún%', TF LIKE '%tapachula%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tapachula%', TF LIKE '%pioneros de cancún%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tapachula%', TF LIKE '%pioneros cancún%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tapachula%', TF LIKE '%pioneros%cancún%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Pioneros de Cancún' vs 'Tapachula' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 3, LIGA = 'Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Vasco DA Gama' AND TIME_FORA = 'Juventude'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Segunda División' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'D. Puerto Montt' AND TIME_FORA = 'Provincial Osorno'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d. puerto montt%', TF LIKE '%provincial osorno%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d. puerto montt%', TF LIKE '%provincial%osorno%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d puerto montt%', TF LIKE '%provincial osorno%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d puerto montt%', TF LIKE '%provincial%osorno%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d%puerto%montt%', TF LIKE '%provincial osorno%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%d%puerto%montt%', TF LIKE '%provincial%osorno%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial osorno%', TF LIKE '%d. puerto montt%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial osorno%', TF LIKE '%d puerto montt%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial osorno%', TF LIKE '%d%puerto%montt%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial%osorno%', TF LIKE '%d. puerto montt%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial%osorno%', TF LIKE '%d puerto montt%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%provincial%osorno%', TF LIKE '%d%puerto%montt%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'D. Puerto Montt' vs 'Provincial Osorno' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Liga Nacional' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Mictlán' AND TIME_FORA = 'Marquense'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Division Profesional - Clausura' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Olimpia' AND TIME_FORA = 'General Caballero'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%olimpia%', TF LIKE '%general caballero%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%olimpia%', TF LIKE '%general%caballero%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%general caballero%', TF LIKE '%olimpia%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%general%caballero%', TF LIKE '%olimpia%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Olimpia' vs 'General Caballero' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Liga Nacional' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'CD Marathon' AND TIME_FORA = 'Platense FC'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%cd marathon%', TF LIKE '%platense fc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%cd marathon%', TF LIKE '%platense%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%marathon%', TF LIKE '%platense fc%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%marathon%', TF LIKE '%platense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense fc%', TF LIKE '%cd marathon%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense fc%', TF LIKE '%marathon%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense%', TF LIKE '%cd marathon%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense%', TF LIKE '%marathon%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'CD Marathon' vs 'Platense FC' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Paraense A3' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Atletico Paraense' AND TIME_FORA = 'Tesla'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico paraense%', TF LIKE '%tesla%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico%paraense%', TF LIKE '%tesla%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tesla%', TF LIKE '%atletico paraense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%tesla%', TF LIKE '%atletico%paraense%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Atletico Paraense' vs 'Tesla' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Primera A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Fortaleza FC' AND TIME_FORA = 'Junior'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fortaleza fc%', TF LIKE '%junior%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%fortaleza%', TF LIKE '%junior%'; matches=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 1, LIGA = 'Primera A' WHERE ID = 33; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 2, LIGA = 'Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Internacional' AND TIME_FORA = 'Bahia'; -- rows=1[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Serie B' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Atletico Paranaense' AND TIME_FORA = 'Volta Redonda'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico paranaense%', TF LIKE '%volta redonda%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico paranaense%', TF LIKE '%volta%redonda%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico%paranaense%', TF LIKE '%volta redonda%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atletico%paranaense%', TF LIKE '%volta%redonda%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volta redonda%', TF LIKE '%atletico paranaense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volta redonda%', TF LIKE '%atletico%paranaense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volta%redonda%', TF LIKE '%atletico paranaense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%volta%redonda%', TF LIKE '%atletico%paranaense%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Atletico Paranaense' vs 'Volta Redonda' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'Liga Premier Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Cordobés' AND TIME_FORA = 'Deportivo Zap'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%cordobés%', TF LIKE '%deportivo zap%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%cordobés%', TF LIKE '%deportivo%zap%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%deportivo zap%', TF LIKE '%cordobés%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%deportivo%zap%', TF LIKE '%cordobés%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Cordobés' vs 'Deportivo Zap' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 0, LIGA = 'Liga Premier Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Zacatepec 1948' AND TIME_FORA = 'Ciervos'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%zacatepec 1948%', TF LIKE '%ciervos%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%zacatepec%1948%', TF LIKE '%ciervos%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%ciervos%', TF LIKE '%zacatepec 1948%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%ciervos%', TF LIKE '%zacatepec%1948%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Zacatepec 1948' vs 'Ciervos' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'Liga Premier Serie A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Mexicali FC' AND TIME_FORA = 'Neza'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%mexicali fc%', TF LIKE '%neza%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%mexicali%', TF LIKE '%neza%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%neza%', TF LIKE '%mexicali fc%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%neza%', TF LIKE '%mexicali%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Mexicali FC' vs 'Neza' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'Liga Pro' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Independiente del Valle' AND TIME_FORA = 'Universidad Catolica'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%independiente del valle%', TF LIKE '%universidad catolica%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%independiente del valle%', TF LIKE '%universidad%catolica%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%independiente%del%valle%', TF LIKE '%universidad catolica%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%independiente%del%valle%', TF LIKE '%universidad%catolica%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%universidad catolica%', TF LIKE '%independiente del valle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%universidad catolica%', TF LIKE '%independiente%del%valle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%universidad%catolica%', TF LIKE '%independiente del valle%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%universidad%catolica%', TF LIKE '%independiente%del%valle%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Independiente del Valle' vs 'Universidad Catolica' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 1, LIGA = 'Torneo Federal A' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Atenas' AND TIME_FORA = 'San Martin Formosa'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atenas%', TF LIKE '%san martin formosa%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%atenas%', TF LIKE '%san%martin%formosa%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%san martin formosa%', TF LIKE '%atenas%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%san%martin%formosa%', TF LIKE '%atenas%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Atenas' vs 'San Martin Formosa' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 2, GOLS_FORA = 2, LIGA = 'Copa de la División Profesional' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Gualberto Villarroel SJ' AND TIME_FORA = 'Real Oruro'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%gualberto villarroel sj%', TF LIKE '%real oruro%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%gualberto villarroel sj%', TF LIKE '%real%oruro%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%gualberto%villarroel%sj%', TF LIKE '%real oruro%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%gualberto%villarroel%sj%', TF LIKE '%real%oruro%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%real oruro%', TF LIKE '%gualberto villarroel sj%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%real oruro%', TF LIKE '%gualberto%villarroel%sj%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%real%oruro%', TF LIKE '%gualberto villarroel sj%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%real%oruro%', TF LIKE '%gualberto%villarroel%sj%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Gualberto Villarroel SJ' vs 'Real Oruro' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 4, GOLS_FORA = 1, LIGA = 'Liga Premier Serie B' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Artesanos Metepec' AND TIME_FORA = 'FC Racing'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%artesanos metepec%', TF LIKE '%fc racing%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%artesanos metepec%', TF LIKE '%racing%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%artesanos%metepec%', TF LIKE '%fc racing%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%artesanos%metepec%', TF LIKE '%racing%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc racing%', TF LIKE '%artesanos metepec%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%fc racing%', TF LIKE '%artesanos%metepec%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%racing%', TF LIKE '%artesanos metepec%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%racing%', TF LIKE '%artesanos%metepec%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Artesanos Metepec' vs 'FC Racing' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 2, LIGA = 'USL Super League' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Dallas Trinity W' AND TIME_FORA = 'Sporting JAX'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas trinity w%', TF LIKE '%sporting jax%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas trinity w%', TF LIKE '%sporting%jax%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas trinity%', TF LIKE '%sporting jax%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas trinity%', TF LIKE '%sporting%jax%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas%trinity%', TF LIKE '%sporting jax%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%dallas%trinity%', TF LIKE '%sporting%jax%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting jax%', TF LIKE '%dallas trinity w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting jax%', TF LIKE '%dallas trinity%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting jax%', TF LIKE '%dallas%trinity%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting%jax%', TF LIKE '%dallas trinity w%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting%jax%', TF LIKE '%dallas trinity%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%sporting%jax%', TF LIKE '%dallas%trinity%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Dallas Trinity W' vs 'Sporting JAX' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 0, GOLS_FORA = 4, LIGA = 'Primera División - Clausura' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Wanderers' AND TIME_FORA = 'CA River Plate'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%wanderers%', TF LIKE '%ca river plate%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%wanderers%', TF LIKE '%ca%river%plate%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%ca river plate%', TF LIKE '%wanderers%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%ca%river%plate%', TF LIKE '%wanderers%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Wanderers' vs 'CA River Plate' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Liga Profesional Argentina' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'Talleres Cordoba' AND TIME_FORA = 'Platense'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%talleres cordoba%', TF LIKE '%platense%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%talleres%cordoba%', TF LIKE '%platense%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense%', TF LIKE '%talleres cordoba%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%platense%', TF LIKE '%talleres%cordoba%'; matches=0[m
+[32m +-- Nenhum match unívoco por LIKE para: 'Talleres Cordoba' vs 'Platense' na data 2025-11-08[m
+[32m +UPDATE jogos SET GOLS_CASA = 1, GOLS_FORA = 0, LIGA = 'Primera Nacional' WHERE DATA_JOGO = '2025-11-08' AND TIME_CASA = 'CA Estudiantes' AND TIME_FORA = 'Estudiantes de Rio Cuarto'; -- rows=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca estudiantes%', TF LIKE '%estudiantes de rio cuarto%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca estudiantes%', TF LIKE '%estudiantes rio cuarto%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca estudiantes%', TF LIKE '%estudiantes%rio%cuarto%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca%estudiantes%', TF LIKE '%estudiantes de rio cuarto%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca%estudiantes%', TF LIKE '%estudiantes rio cuarto%'; matches=0[m
+[32m +-- Fallback LIKE: DATA_JOGO='2025-11-08', TC LIKE '%ca%estudiantes%', TF LIKE '%estudiantes%rio%cuarto%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%estudiantes de rio cuarto%', TF LIKE '%ca estudiantes%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%estudiantes de rio cuarto%', TF LIKE '%ca%estudiantes%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%estudiantes rio cuarto%', TF LIKE '%ca estudiantes%'; matches=0[m
+[32m +-- Fallback LIKE (reversed): DATA_JOGO='2025-11-08', TC LIKE '%estudiantes rio cua
