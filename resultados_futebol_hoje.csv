@@ -810,7 +810,7 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,10:30,Landesliga - Vorarlbergliga,2025,Göfis,Wolfurt,1,3,FT
 2025-11-08,10:30,Landesliga - Vorarlbergliga,2025,Ludesch,Hard,0,1,FT
 2025-11-08,10:30,Landesliga - Vorarlbergliga,2025,Admira Dornbirn,Lochau,3,2,FT
-2025-11-08,10:30,Landesliga - Vorarlbergliga,2025,FC Egg,Dornbirner SV,N/A,N/A,CANC
+2025-11-08,10:30,Landesliga - Vorarlbergliga,2025,FC Egg,Dornbirner SV,N/A,N/A,PST
 2025-11-08,10:30,Campionato Primavera - 2,2025,Cittadella U19,Padova U19,1,0,FT
 2025-11-08,10:30,Campionato Primavera - 2,2025,Modena U19,Renate U19,2,1,FT
 2025-11-08,10:30,Campionato Primavera - 2,2025,Spezia U19,Palermo U19,3,1,FT
@@ -823,7 +823,7 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,10:30,Ligue 2,2025,Kalaâ Sport,Progrès Sakiet Eddaïer,2,1,FT
 2025-11-08,10:30,Ligue 2,2025,Korba,AS Kasserine,0,0,FT
 2025-11-08,10:30,World Cup - U17,2025,France U17,Canada W U17,0,0,FT
-2025-11-08,10:30,Premier League,2025,Royal Leopards,Tabankulu,N/A,N/A,NS
+2025-11-08,10:30,Premier League,2025,Royal Leopards,Tabankulu,0,3,FT
 2025-11-08,10:30,U19 Divisie 1,2025,PSV U19,Ajax U19,0,1,FT
 2025-11-08,10:45,NB I,2025,Zalaegerszegi TE,Diosgyori VTK,2,0,FT
 2025-11-08,10:45,Ekstraklasa,2025,Lechia Gdansk,Widzew Łódź,2,1,FT
@@ -920,7 +920,6 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,11:00,Azadegan League,2025,Shenavarsazi Qeshm,Nassaji Mazandaran,0,1,FT
 2025-11-08,11:00,Premier League,2025,Ararat-Armenia,FC Urartu,1,1,FT
 2025-11-08,11:00,First League,2025,KAMAZ,Volga Ulyanovsk,2,3,FT
-2025-11-08,11:00,Ligue 1,2025,Dauphins Noirs,Vita Club,N/A,N/A,PST
 2025-11-08,11:00,Ligue 1,2025,Saint Eloi Lupopo,Simba,1,1,FT
 2025-11-08,11:00,Ligue 1,2025,Maniema Union,Bukavu Dawa,0,0,FT
 2025-11-08,11:00,Persian Gulf Pro League,2025,Sepahan FC,Esteghlal FC,N/A,N/A,PST
@@ -935,7 +934,6 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,11:00,Ligue 2,2025,NC Magra,MO Constantine,1,0,FT
 2025-11-08,11:00,Ligue 2,2025,Teleghma,JS Jijel,3,0,FT
 2025-11-08,11:00,Ligue 2,2025,US Chaouia,HB Chelghoum Laïd,2,0,FT
-2025-11-08,11:00,Botola 2,2025,Chabab Mohammédia,Union Sportive Boujaad,N/A,N/A,PST
 2025-11-08,11:00,Botola 2,2025,Riadi Salmi,El Massira,0,0,FT
 2025-11-08,11:00,Botola 2,2025,Widad Témara,Mouloudia Oujda,2,1,FT
 2025-11-08,11:15,Tweede Divisie,2025,AFC Amsterdam,Sparta Rotterdam II,1,4,FT
@@ -1534,7 +1532,7 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,15:00,Carioca - 2,2025,Carapebus,Duque de Caxias,0,2,FT
 2025-11-08,15:00,Carioca - 2,2025,Niteroiense,Paduano,5,1,FT
 2025-11-08,15:00,Carioca - 2,2025,Artsul,São Cristóvão RJ,1,1,FT
-2025-11-08,15:00,Carioca - 2,2025,Petrópolis,Campo Grande,N/A,N/A,NS
+2025-11-08,15:00,Carioca - 2,2025,Petrópolis,Campo Grande,0,1,FT
 2025-11-08,15:00,Carioca - 2,2025,Nova Cidade,Friburguense,1,0,FT
 2025-11-08,15:00,Carioca - 2,2025,Serrano RJ,Bonsucesso,1,0,FT
 2025-11-08,15:00,Liga Premier Serie A,2025,Chilpancingo,Calor de San Pedro,1,1,FT
@@ -1543,7 +1541,7 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,15:00,Gaúcho - 3,2025,FBC Riograndense RS,São Gabriel,8,0,FT
 2025-11-08,15:00,Mineiro - 3,2025,Tupi,Essube,1,0,FT
 2025-11-08,15:00,Copa Fares Lopes,2025,WSG Wattens,Vila Real,1,0,FT
-2025-11-08,15:00,Primera División,2025,Ayacucho FC,Comerciantes Unidos,N/A,N/A,INT
+2025-11-08,15:00,Primera División,2025,Ayacucho FC,Comerciantes Unidos,N/A,N/A,ABD
 2025-11-08,15:08,III Liga - Group 4,2025,Wisłoka Dębica,Avia Świdnik,0,2,FT
 2025-11-08,15:15,NB I,2025,Paks,Kisvarda FC,5,3,FT
 2025-11-08,15:30,1. Liga,2025,Leevon / PPK,JFK Ventspils,3,2,FT
@@ -1563,7 +1561,7 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,15:30,Second Amateur Division - ACFF,2025,Stade Verviers,Raeren-Eynatten,1,0,FT
 2025-11-08,15:30,Second Amateur Division - ACFF,2025,La Calamine,Onhaye,1,1,FT
 2025-11-08,15:30,Second Amateur Division - VFV A,2025,Oostkamp,Sparta Petegem,2,2,FT
-2025-11-08,15:30,Goiano - 3,2025,Santa Helena,ABD FC,N/A,N/A,NS
+2025-11-08,15:30,Goiano - 3,2025,Santa Helena,ABD FC,0,2,FT
 2025-11-08,15:30,Tercera División RFEF - Group 13,2025,Yeclano II,Olímpico Totana,0,1,FT
 2025-11-08,15:30,Paranaense - 3,2025,City London,Verê,2,2,FT
 2025-11-08,15:45,Ekstraliga Women,2025,Stomilanki Olsztyn W,UJ Krakow W,1,1,FT
@@ -1581,15 +1579,15 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,16:00,First Amateur Division,2025,Lyra-Lierse Berlaar,Oud-Heverlee Leuven II,2,0,FT
 2025-11-08,16:00,First Amateur Division,2025,Albert Quévy-Mons,Meux,1,1,FT
 2025-11-08,16:00,Liga 3,2025,Paredes,SC Braga B,2,0,FT
-2025-11-08,16:00,Second Amateur Division - ACFF,2025,Braine,Aywaille,0,0,FT
+2025-11-08,16:00,Second Amateur Division - ACFF,2025,Braine,Aywaille,2,0,FT
 2025-11-08,16:00,Second Amateur Division - VFV A,2025,Mechelen II,Torhout,0,1,FT
 2025-11-08,16:00,Second Amateur Division - VFV A,2025,KRC Gent,Diksmuide,0,0,FT
 2025-11-08,16:00,Second Amateur Division - VFV A,2025,RFC Wetteren,Oudenaarde,1,2,FT
-2025-11-08,16:00,Second Amateur Division - VFV B,2025,Wellen,Rotselaar,N/A,N/A,NS
+2025-11-08,16:00,Second Amateur Division - VFV B,2025,Wellen,Rotselaar,2,1,FT
 2025-11-08,16:00,Second Amateur Division - VFV B,2025,Cappellen,Londerzeel,1,3,FT
 2025-11-08,16:00,Second Amateur Division - VFV B,2025,Nijlen,Tongeren,1,1,FT
 2025-11-08,16:00,Goiano - 3,2025,Guanabara City,ASEEV,2,1,FT
-2025-11-08,16:00,Goiano - 3,2025,America GO,Crixás EC,N/A,N/A,NS
+2025-11-08,16:00,Goiano - 3,2025,America GO,Crixás EC,0,0,FT
 2025-11-08,16:00,Tercera División RFEF - Group 4,2025,Real Sociedad III,Lagun Onak,1,4,FT
 2025-11-08,16:00,Tercera División RFEF - Group 17,2025,Cuarte,Caspe,1,0,FT
 2025-11-08,16:00,Liga Pro,2025,Manta FC,Mushuc Runa SC,3,0,FT
@@ -1603,68 +1601,68 @@ Data,Horário,Liga,Temporada,Time_Casa,Time_Fora,Gols_Casa,Gols_Fora,Status
 2025-11-08,16:30,Super League,2025,Servette FC,FC Thun,0,1,FT
 2025-11-08,16:30,2. Bundesliga,2025,1. FC Kaiserslautern,Hertha BSC,0,1,FT
 2025-11-08,16:30,Primera División - Clausura,2025,Danubio,Plaza Colonia,2,0,FT
-2025-11-08,16:45,Serie A,2025,Parma,AC Milan,N/A,N/A,2H
-2025-11-08,16:45,Jupiler Pro League,2025,Antwerp,RAAL La Louvière,N/A,N/A,2H
-2025-11-08,17:00,Liga Profesional Argentina,2025,Huracan,Newells Old Boys,N/A,N/A,2H
-2025-11-08,17:00,Liga Profesional Argentina,2025,Racing Club,Defensa Y Justicia,N/A,N/A,2H
-2025-11-08,17:00,Premier League,2025,Chelsea,Wolves,N/A,N/A,2H
-2025-11-08,17:00,Eredivisie,2025,PEC Zwolle,Sparta Rotterdam,N/A,N/A,2H
-2025-11-08,17:00,La Liga,2025,Espanyol,Villarreal,N/A,N/A,2H
-2025-11-08,17:00,Segunda División,2025,Malaga,Cordoba,N/A,N/A,2H
-2025-11-08,17:00,Feminine Division 1,2025,Paris Saint Germain W,FC Fleury 91 W,N/A,N/A,2H
-2025-11-08,17:00,Liga Mayor,2025,Delfines Del Este,Moca,N/A,N/A,2H
-2025-11-08,17:00,Liga Mayor,2025,Jarabacoa,Salcedo,N/A,N/A,2H
-2025-11-08,17:00,Primera División RFEF - Group 2,2025,Real Murcia,Gimnastic,N/A,N/A,2H
-2025-11-08,17:00,Primera División RFEF - Group 1,2025,Arenas Getxo,Osasuna II,N/A,N/A,2H
-2025-11-08,17:00,USL Super League,2025,Brooklyn W,DC Power W,N/A,N/A,2H
+2025-11-08,16:45,Serie A,2025,Parma,AC Milan,2,2,FT
+2025-11-08,16:45,Jupiler Pro League,2025,Antwerp,RAAL La Louvière,3,1,FT
+2025-11-08,17:00,Liga Profesional Argentina,2025,Huracan,Newells Old Boys,0,2,FT
+2025-11-08,17:00,Liga Profesional Argentina,2025,Racing Club,Defensa Y Justicia,1,0,FT
+2025-11-08,17:00,Premier League,2025,Chelsea,Wolves,3,0,FT
+2025-11-08,17:00,Eredivisie,2025,PEC Zwolle,Sparta Rotterdam,1,0,FT
+2025-11-08,17:00,La Liga,2025,Espanyol,Villarreal,0,2,FT
+2025-11-08,17:00,Segunda División,2025,Malaga,Cordoba,2,2,FT
+2025-11-08,17:00,Feminine Division 1,2025,Paris Saint Germain W,FC Fleury 91 W,4,0,FT
+2025-11-08,17:00,Liga Mayor,2025,Delfines Del Este,Moca,2,0,FT
+2025-11-08,17:00,Liga Mayor,2025,Jarabacoa,Salcedo,0,0,FT
+2025-11-08,17:00,Primera División RFEF - Group 2,2025,Real Murcia,Gimnastic,3,2,FT
+2025-11-08,17:00,Primera División RFEF - Group 1,2025,Arenas Getxo,Osasuna II,1,0,FT
+2025-11-08,17:00,USL Super League,2025,Brooklyn W,DC Power W,1,0,FT
 2025-11-08,17:00,Premier Division,2025,Aston Villa,Pigotts Bullets,N/A,N/A,NS
-2025-11-08,17:05,Ligue 1,2025,Monaco,Lens,N/A,N/A,2H
-2025-11-08,17:15,Primera División,2025,Juan Pablo II College,Atletico Grau,N/A,N/A,2H
-2025-11-08,17:30,Primera División,2025,Palestino,Coquimbo Unido,N/A,N/A,HT
-2025-11-08,17:30,Segunda División,2025,Trasandino,D. Melipilla,N/A,N/A,HT
-2025-11-08,17:30,Primeira Liga,2025,Santa Clara,Sporting CP,N/A,N/A,2H
-2025-11-08,17:30,Liga Premier Serie A,2025,Pioneros de Cancún,Tapachula,N/A,N/A,2H
-2025-11-08,18:00,Serie A,2025,Vasco DA Gama,Juventude,N/A,N/A,1H
-2025-11-08,18:00,Segunda División,2025,D. Puerto Montt,Provincial Osorno,N/A,N/A,1H
-2025-11-08,18:00,Liga Nacional,2025,Mictlán,Marquense,N/A,N/A,1H
-2025-11-08,18:00,Division Profesional - Clausura,2025,Olimpia,General Caballero,N/A,N/A,1H
+2025-11-08,17:05,Ligue 1,2025,Monaco,Lens,1,4,FT
+2025-11-08,17:15,Primera División,2025,Juan Pablo II College,Atletico Grau,3,1,FT
+2025-11-08,17:30,Primera División,2025,Palestino,Coquimbo Unido,1,2,FT
+2025-11-08,17:30,Segunda División,2025,Trasandino,D. Melipilla,2,4,FT
+2025-11-08,17:30,Primeira Liga,2025,Santa Clara,Sporting CP,1,2,FT
+2025-11-08,17:30,Liga Premier Serie A,2025,Pioneros de Cancún,Tapachula,4,1,FT
+2025-11-08,18:00,Serie A,2025,Vasco DA Gama,Juventude,1,3,FT
+2025-11-08,18:00,Segunda División,2025,D. Puerto Montt,Provincial Osorno,2,0,FT
+2025-11-08,18:00,Liga Nacional,2025,Mictlán,Marquense,1,1,FT
+2025-11-08,18:00,Division Profesional - Clausura,2025,Olimpia,General Caballero,1,1,FT
 2025-11-08,18:00,Premier Division,2025,North Stars,Hard Rock,N/A,N/A,PST
 2025-11-08,18:00,Premier Division,2025,St. John's,SAB Spartans,N/A,N/A,PST
 2025-11-08,18:00,Premier Division,2025,Paradise,St. David’s,N/A,N/A,PST
 2025-11-08,18:00,Premier Division,2025,Queens Park Rangers,Camerhogne,N/A,N/A,PST
 2025-11-08,18:00,Premier Division,2025,Hurricanes,Shamrock,N/A,N/A,PST
-2025-11-08,18:00,Liga Nacional,2025,CD Marathon,Platense FC,N/A,N/A,1H
+2025-11-08,18:00,Liga Nacional,2025,CD Marathon,Platense FC,1,0,FT
 2025-11-08,18:00,Pro League,2026,Ath­let­ic Club,Cunupia,N/A,N/A,NS
-2025-11-08,18:00,Paraense A3,2025,Atletico Paraense,Tesla,N/A,N/A,NS
-2025-11-08,18:00,Major League Soccer,2025,Minnesota United FC,Seattle Sounders,N/A,N/A,1H
-2025-11-08,18:10,Primera A,2025,Fortaleza FC,Junior,N/A,N/A,1H
-2025-11-08,18:30,Serie A,2025,Internacional,Bahia,N/A,N/A,1H
-2025-11-08,18:30,Serie B,2025,Atletico Paranaense,Volta Redonda,N/A,N/A,1H
+2025-11-08,18:00,Paraense A3,2025,Atletico Paraense,Tesla,1,0,FT
+2025-11-08,18:00,Major League Soccer,2025,Minnesota United FC,Seattle Sounders,3,3,PEN
+2025-11-08,18:10,Primera A,2025,Fortaleza FC,Junior,1,1,FT
+2025-11-08,18:30,Serie A,2025,Internacional,Bahia,2,2,FT
+2025-11-08,18:30,Serie B,2025,Atletico Paranaense,Volta Redonda,2,0,FT
 2025-11-08,18:30,Liga Premier Serie B,2025,Aguacateros CDU,Caja Oblatos CFD,N/A,N/A,NS
-2025-11-08,18:30,Liga Premier Serie A,2025,Cordobés,Deportivo Zap,N/A,N/A,NS
-2025-11-08,18:30,Liga Premier Serie A,2025,Zacatepec 1948,Ciervos,N/A,N/A,NS
-2025-11-08,18:30,Liga Premier Serie A,2025,Mexicali FC,Neza,N/A,N/A,NS
-2025-11-08,18:30,Liga Pro,2025,Independiente del Valle,Universidad Catolica,N/A,N/A,1H
-2025-11-08,18:30,Torneo Federal A,2025,Atenas,San Martin Formosa,N/A,N/A,1H
-2025-11-08,18:30,Copa de la División Profesional,2025,Gualberto Villarroel SJ,Real Oruro,N/A,N/A,1H
-2025-11-08,19:00,Liga Premier Serie B,2025,Artesanos Metepec,FC Racing,N/A,N/A,NS
+2025-11-08,18:30,Liga Premier Serie A,2025,Cordobés,Deportivo Zap,0,2,FT
+2025-11-08,18:30,Liga Premier Serie A,2025,Zacatepec 1948,Ciervos,2,0,FT
+2025-11-08,18:30,Liga Premier Serie A,2025,Mexicali FC,Neza,0,2,FT
+2025-11-08,18:30,Liga Pro,2025,Independiente del Valle,Universidad Catolica,0,2,FT
+2025-11-08,18:30,Torneo Federal A,2025,Atenas,San Martin Formosa,0,1,FT
+2025-11-08,18:30,Copa de la División Profesional,2025,Gualberto Villarroel SJ,Real Oruro,2,2,FT
+2025-11-08,19:00,Liga Premier Serie B,2025,Artesanos Metepec,FC Racing,4,1,FT
 2025-11-08,19:00,Liga Premier Serie A,2025,Tritons Vallarta,Tigres de Alica,N/A,N/A,NS
-2025-11-08,19:00,USL Super League,2025,Dallas Trinity W,Sporting JAX,N/A,N/A,NS
-2025-11-08,19:00,Primera C,2025,Ituzaingó,Sportivo Barracas,N/A,N/A,NS
-2025-11-08,19:00,Primera División - Clausura,2025,Wanderers,CA River Plate,N/A,N/A,NS
+2025-11-08,19:00,USL Super League,2025,Dallas Trinity W,Sporting JAX,0,2,FT
+2025-11-08,19:00,Primera C,2025,Ituzaingó,Sportivo Barracas,0,1,PEN
+2025-11-08,19:00,Primera División - Clausura,2025,Wanderers,CA River Plate,0,4,FT
 2025-11-08,19:00,Premier Division,2025,Garden Stars,John Hughes,N/A,N/A,NS
-2025-11-08,19:15,Liga Profesional Argentina,2025,Talleres Cordoba,Platense,N/A,N/A,NS
+2025-11-08,19:15,Liga Profesional Argentina,2025,Talleres Cordoba,Platense,1,0,FT
 2025-11-08,19:30,Division di Honor,2025,River Plate,Britannia,N/A,N/A,NS
-2025-11-08,19:40,Primera Nacional,2025,CA Estudiantes,Estudiantes de Rio Cuarto,N/A,N/A,NS
-2025-11-08,20:00,Liga MX,2025,Tigres UANL,Atletico San Luis,N/A,N/A,NS
-2025-11-08,20:00,Liga Nacional,2025,Comunicaciones,Cobán Imperial,N/A,N/A,NS
-2025-11-08,20:00,Liga Premier Serie A,2025,UA Zacatecas,Acatlan,N/A,N/A,NS
+2025-11-08,19:40,Primera Nacional,2025,CA Estudiantes,Estudiantes de Rio Cuarto,1,0,FT
+2025-11-08,20:00,Liga MX,2025,Tigres UANL,Atletico San Luis,N/A,N/A,2H
+2025-11-08,20:00,Liga Nacional,2025,Comunicaciones,Cobán Imperial,N/A,N/A,2H
+2025-11-08,20:00,Liga Premier Serie A,2025,UA Zacatecas,Acatlan,N/A,N/A,2H
 2025-11-08,20:00,Pro League,2026,Phoenix,Central,N/A,N/A,NS
-2025-11-08,20:00,Major League Soccer,2025,FC Cincinnati,Columbus Crew,N/A,N/A,NS
-2025-11-08,20:07,Liga MX,2025,Guadalajara Chivas,Monterrey,N/A,N/A,NS
-2025-11-08,20:15,Liga Nacional,2025,Olancho,Lobos Upnfm,N/A,N/A,NS
-2025-11-08,20:20,Primera A,2025,Atletico Nacional,Rionegro Aguilas,N/A,N/A,NS
-2025-11-08,20:30,Primera División,2025,O'Higgins,Nublense,N/A,N/A,NS
-2025-11-08,20:30,Serie B,2025,Vila Nova,Avai,N/A,N/A,NS
-2025-11-08,20:30,Primera División,2025,Deportivo La Guaira,Puerto Cabello,N/A,N/A,NS
-2025-11-08,20:30,Primera División,2025,Monagas SC,Zamora FC,N/A,N/A,NS
+2025-11-08,20:00,Major League Soccer,2025,FC Cincinnati,Columbus Crew,N/A,N/A,2H
+2025-11-08,20:07,Liga MX,2025,Guadalajara Chivas,Monterrey,N/A,N/A,2H
+2025-11-08,20:15,Liga Nacional,2025,Olancho,Lobos Upnfm,N/A,N/A,HT
+2025-11-08,20:20,Primera A,2025,Atletico Nacional,Rionegro Aguilas,N/A,N/A,2H
+2025-11-08,20:30,Primera División,2025,O'Higgins,Nublense,N/A,N/A,2H
+2025-11-08,20:30,Serie B,2025,Vila Nova,Avai,N/A,N/A,2H
+2025-11-08,20:30,Primera División,2025,Deportivo La Guaira,Puerto Cabello,N/A,N/A,2H
+2025-11-08,20:30,Primera División,2025,Monagas SC,Zamora FC,N/A,N/A,2H

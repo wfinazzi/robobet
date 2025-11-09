@@ -142,7 +142,7 @@ df_filtrado = pd.DataFrame()
 
 if not df.empty:
     st.subheader("Filtros de Apostas e Análise")
-    
+
     # --- FILTROS INTERATIVOS ---
     tipo_aposta = st.selectbox("Tipo de aposta", [
         "Todos",
@@ -151,13 +151,13 @@ if not df.empty:
         "Over 2.5",
         "Mandante Forte x Visitante Fraco",
         "Visitante Forte x Mandante Fraco"
-    ])
+    ], index=2)  # default: Over 1.5
     
-    min_jogos = st.slider("Número mínimo de partidas", 0, 20, 0)
-
+    min_jogos = st.slider("Número mínimo de partidas", 0, 20, 10)  # default: 10
+    
     perc_min = 0
     if tipo_aposta.startswith("Over") or tipo_aposta.startswith("Alta Prob."):
-        perc_min = st.slider("Porcentagem mínima", 0, 100, 60)
+        perc_min = st.slider("Porcentagem mínima", 0, 100, 70)  # default: 70
     
     # --- Aplicar filtros dinamicamente ---
     df_filtrado = df.copy()
@@ -352,19 +352,18 @@ if not df.empty:
 st.markdown("---")
 st.subheader("Banco de Dados (MySQL)")
 
-mysql_host = st.text_input("Host MySQL", os.getenv("MYSQL_HOST", "localhost"))
-mysql_user = st.text_input("Usuário MySQL", os.getenv("MYSQL_USER", ""))
-mysql_password = st.text_input("Senha MySQL", os.getenv("MYSQL_PASSWORD", ""), type="password")
-mysql_db = st.text_input("Banco de Dados", os.getenv("MYSQL_DB", "simulador-apostas"))
+# Lê direto do .env (sem inputs na UI)
+mysql_host = os.getenv("MYSQL_HOST", "localhost")
+mysql_user = os.getenv("MYSQL_USER", "")
+mysql_password = os.getenv("MYSQL_PASSWORD", "")
+mysql_db = os.getenv("MYSQL_DB", "simulador-apostas")
+
+st.info(f"Usando configuração do .env: host='{mysql_host}', db='{mysql_db}'")
 
 col_db1, col_db2, col_db3 = st.columns(3)
 
 with col_db1:
     if st.button("🔌 Testar conexão MySQL"):
-        os.environ['MYSQL_HOST'] = mysql_host
-        os.environ['MYSQL_USER'] = mysql_user
-        os.environ['MYSQL_PASSWORD'] = mysql_password
-        os.environ['MYSQL_DB'] = mysql_db
         try:
             conn = get_mysql_connection()
             conn.close()
@@ -375,10 +374,6 @@ with col_db1:
 with col_db2:
     if st.button("📥 Inserir jogos filtrados no MySQL"):
         if 'df_filtrado' in locals() and not df_filtrado.empty:
-            os.environ['MYSQL_HOST'] = mysql_host
-            os.environ['MYSQL_USER'] = mysql_user
-            os.environ['MYSQL_PASSWORD'] = mysql_password
-            os.environ['MYSQL_DB'] = mysql_db
             try:
                 df_ready = prepare_df_for_insertion(df_filtrado)
                 conn = get_mysql_connection()
@@ -393,10 +388,6 @@ with col_db2:
 with col_db3:
     if st.button("📥 Inserir todos os jogos de hoje no MySQL"):
         if 'df' in locals() and not df.empty:
-            os.environ['MYSQL_HOST'] = mysql_host
-            os.environ['MYSQL_USER'] = mysql_user
-            os.environ['MYSQL_PASSWORD'] = mysql_password
-            os.environ['MYSQL_DB'] = mysql_db
             try:
                 df_ready = prepare_df_for_insertion(df)
                 conn = get_mysql_connection()
