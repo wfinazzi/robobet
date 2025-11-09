@@ -18,6 +18,12 @@ def recreate_results_csv(csv_path: str = 'resultados_futebol_hoje.csv', date: st
     Remove o arquivo antigo (se existir) e salva um novo com o mesmo nome.
     Retorna o número de jogos salvos no CSV.
     """
+    # Controle de cota antes da requisição
+    from src.quota import allow_request, remaining_quota_today
+    limit = int(os.getenv("API_DAILY_LIMIT", "100"))
+    if not allow_request("fixtures", max_per_day=limit):
+        raise RuntimeError(f"Limite diário da API atingido ({limit}). Restante: {remaining_quota_today(limit)}")
+
     target_date = date or datetime.now().strftime('%Y-%m-%d')
     params = {"date": target_date}
     try:
